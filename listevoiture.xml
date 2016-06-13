@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ArrayOfVoiture xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+  <Voiture>
+    <Marque>Mercedes</Marque>
+    <Modele>A45AMG</Modele>
+    <Type>Sport</Type>
+    <Puissance>380</Puissance>
+    <Description>Un monstre de puissance.</Description>
+    <ImagePath>C:\Users\ozcan\Documents\COURS\C# .NET  WPF XAML\TP IHM\MasterDetail\Images\a45.jpg</ImagePath>
+  </Voiture>
+  <Voiture>
+    <Marque>BMW</Marque>
+    <Modele>M5</Modele>
+    <Type>Sport</Type>
+    <Puissance>550</Puissance>
+    <Description>Un bolide à tout épreuve.</Description>
+    <ImagePath>C:\Users\ozcan\Documents\COURS\C# .NET  WPF XAML\TP IHM\MasterDetail\Images\m5.jpg</ImagePath>
+  </Voiture>
+  <Voiture>
+    <Marque>Ford</Marque>
+    <Modele>Mustang</Modele>
+    <Type>Sport</Type>
+    <Puissance>500</Puissance>
+    <Description>Attention à vos oreilles.Cette voiture va vous étonner par sa rapidité. Voiture américaine equipé d'un moteur v10.</Description>
+    <ImagePath>C:\Users\ozcan\Documents\COURS\C# .NET  WPF XAML\TP IHM\MasterDetail\Images\mustang.jpg</ImagePath>
+  </Voiture>
+  <Voiture>
+    <Marque>Mercedes</Marque>
+    <Modele>C63AMG</Modele>
+    <Type>Sport</Type>
+    <Puissance>750</Puissance>
+    <Description>Grosse berline sportive allemande.</Description>
+    <ImagePath>C:\Users\ozcan\Documents\COURS\C# .NET  WPF XAML\TP IHM\MasterDetail\Images\c63.jpg</ImagePath>
+  </Voiture>
+  <Voiture>
+    <Marque>Citroen</Marque>
+    <Modele>Saxo</Modele>
+    <Type>Berline</Type>
+    <Puissance>60</Puissance>
+    <Description>Voiture parfaite pour jeune pilote. Ideal pour les plans Tinder</Description>
+    <ImagePath>C:\Users\ozcan\Documents\COURS\C# .NET  WPF XAML\TP IHM\MasterDetail\Images\saxo.jpg</ImagePath>
+  </Voiture>
+  <Voiture>
+    <Marque>Audi</Marque>
+    <Modele>RS3</Modele>
+    <Type>Sport</Type>
+    <Puissance>367</Puissance>
+    <Description>Voiture pour les passionés de la conduite</Description>
+    <ImagePath>C:\Users\ozcan\Documents\COURS\C# .NET  WPF XAML\TP IHM\MasterDetail\Images\rs3.jpg</ImagePath>
+  </Voiture>
+</ArrayOfVoiture>

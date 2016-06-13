@@ -50,7 +50,7 @@ namespace MasterDetail.ViewModels
             FinCommand = new DelegateCommand(OnFinCommand, CanExecuteFin);
             OpenCommand = new DelegateCommand(OnOpenCommand, CanOpenCommand);
 
-            NewVoiture = new Voiture("", "", "Familiale", 0, "", new BitmapImage(new Uri("U:\\C#\\TP IHM\\MasterDetail\\Images\\image.png")));
+            NewVoiture = new Voiture("", "", "Familiale", 0, "", "C:\\Users\\ozcan\\Documents\\COURS\\C# .NET  WPF XAML\\TP IHM\\MasterDetail\\Images\\image.png");
 
         }
 
@@ -63,13 +63,13 @@ namespace MasterDetail.ViewModels
         private void OnOpenCommand(object obj)
         {
             OpenFileDialog op = new OpenFileDialog();
-            op.Title = "Select a picture";
+            op.Title = "Selectionner une image";
             op.Filter = "All supported graphics|*.jpg;*.jpeg;*.png|" +
               "JPEG (*.jpg;*.jpeg)|*.jpg;*.jpeg|" +
               "Portable Network Graphic (*.png)|*.png";
             if (op.ShowDialog() == true)
             {
-                NewVoiture.ImageSource = new BitmapImage(new Uri(op.FileName));
+                NewVoiture.Image = new BitmapImage(new Uri(op.FileName));
             }
         }
 

@@ -10,10 +10,15 @@ using System.Windows.Media.Imaging;
 using Library;
 using Metier;
 using MasterDetail.Events;
+using System.Xml;
+using System.Xml.Serialization;
+using System.IO;
 
 namespace MasterDetail.ViewModels
 {
 
+    [Serializable]
+  
     public class MainMVVM : VMBase
     {
 
@@ -95,8 +100,8 @@ namespace MasterDetail.ViewModels
             }
         }
 
-        private static ObservableCollection<Voiture> _listeVoiture;
-        public static ObservableCollection<Voiture> ListeVoiture {
+        private ObservableCollection<Voiture> _listeVoiture;
+        public ObservableCollection<Voiture> ListeVoiture {
             get { return _listeVoiture; }
             set
             {
@@ -116,26 +121,25 @@ namespace MasterDetail.ViewModels
         public DelegateCommand DelCommand { get; set; }
         public DelegateCommand OpenCommand { get; set; }
 
+        public DelegateCommand SaveCommand { get; set; }
+        public DelegateCommand LoadCommand { get; set; }
+
         #endregion
 
         #region Constructeur
 
-        static MainMVVM()
-        {
-            ListeVoiture = new ObservableCollection<Voiture>();
-
-            ListeVoiture.Add(new Voiture("Mercedes", "A45AMG", "Sport", int.Parse("380"), "Un monstre de puissance.", new BitmapImage(new Uri("U:\\C#\\TP IHM\\MasterDetail\\Images\\a45.jpg"))));
-            ListeVoiture.Add(new Voiture("BMW", "M5", "Sport", int.Parse("550"), "Un bolide à tout épreuve.", new BitmapImage(new Uri("U:\\C#\\TP IHM\\MasterDetail\\Images\\m5.jpg"))));
-            ListeVoiture.Add(new Voiture("Ford", "Mustang", "Sport", int.Parse("500"), "Attention à vos oreilles.Cette voiture va vous étonner par sa rapidité. Voiture américaine equipé d'un moteur v10.", new BitmapImage(new Uri("U:\\C#\\TP IHM\\MasterDetail\\Images\\mustang.jpg"))));
-            ListeVoiture.Add(new Voiture("Mercedes", "C63AMG", "Sport", int.Parse("750"), "Grosse berline sportive allemande.", new BitmapImage(new Uri("U:\\C#\\TP IHM\\MasterDetail\\Images\\c63.jpg"))));
-            ListeVoiture.Add(new Voiture("Citroen", "Saxo", "Berline", int.Parse("60"), "Voiture parfaite pour jeune pilote. Ideal pour les plans Tinder", new BitmapImage(new Uri("U:\\C#\\TP IHM\\MasterDetail\\Images\\saxo.jpg"))));
-            ListeVoiture.Add(new Voiture("Audi", "RS3", "Sport", int.Parse("367"), "Voiture pour les passionés de la conduite", new BitmapImage(new Uri("U:\\C#\\TP IHM\\MasterDetail\\Images\\rs3.jpg"))));
-        }
-
-
         public MainMVVM()
             :base()
         {
+            ListeVoiture = new ObservableCollection<Voiture>();
+
+            ListeVoiture.Add(new Voiture("Mercedes", "A45AMG", "Sport", int.Parse("380"), "Un monstre de puissance.", "C:\\Users\\ozcan\\Documents\\COURS\\C# .NET  WPF XAML\\TP IHM\\MasterDetail\\Images\\a45.jpg"));
+            ListeVoiture.Add(new Voiture("BMW", "M5", "Sport", int.Parse("550"), "Un bolide à tout épreuve.", "C:\\Users\\ozcan\\Documents\\COURS\\C# .NET  WPF XAML\\TP IHM\\MasterDetail\\Images\\m5.jpg"));
+            ListeVoiture.Add(new Voiture("Ford", "Mustang", "Sport", int.Parse("500"), "Attention à vos oreilles.Cette voiture va vous étonner par sa rapidité. Voiture américaine equipé d'un moteur v10.","C:\\Users\\ozcan\\Documents\\COURS\\C# .NET  WPF XAML\\TP IHM\\MasterDetail\\Images\\mustang.jpg"));
+            ListeVoiture.Add(new Voiture("Mercedes", "C63AMG", "Sport", int.Parse("750"), "Grosse berline sportive allemande.", "C:\\Users\\ozcan\\Documents\\COURS\\C# .NET  WPF XAML\\TP IHM\\MasterDetail\\Images\\c63.jpg"));
+            ListeVoiture.Add(new Voiture("Citroen", "Saxo", "Berline", int.Parse("60"), "Voiture parfaite pour jeune pilote. Ideal pour les plans Tinder", "C:\\Users\\ozcan\\Documents\\COURS\\C# .NET  WPF XAML\\TP IHM\\MasterDetail\\Images\\saxo.jpg"));
+            ListeVoiture.Add(new Voiture("Audi", "RS3", "Sport", int.Parse("367"), "Voiture pour les passionés de la conduite", "C:\\Users\\ozcan\\Documents\\COURS\\C# .NET  WPF XAML\\TP IHM\\MasterDetail\\Images\\rs3.jpg"));
+
             TextEdit = "Modifier";
             IsReadOnly = true;
             IsEnabledButton = false;
@@ -145,6 +149,8 @@ namespace MasterDetail.ViewModels
             EditCommand = new DelegateCommand(OnEditCommand, CanEditCommand);
             DelCommand = new DelegateCommand(OnDelCommand, CanDelCommand);
             OpenCommand = new DelegateCommand(OnOpenCommand, CanOpenCommand);
+            SaveCommand = new DelegateCommand(OnSaveCommand, CanSaveCommand);
+            LoadCommand = new DelegateCommand(OnLoadCommand, CanLoadCommand);
         }
 
         #endregion
@@ -223,13 +229,13 @@ namespace MasterDetail.ViewModels
         private void OnOpenCommand(object obj)
         {
             OpenFileDialog op = new OpenFileDialog();
-            op.Title = "Select a picture";
+            op.Title = "Selectionner une image";
             op.Filter = "All supported graphics|*.jpg;*.jpeg;*.png|" +
               "JPEG (*.jpg;*.jpeg)|*.jpg;*.jpeg|" +
               "Portable Network Graphic (*.png)|*.png";
             if (op.ShowDialog() == true)
             {
-                SelectedVoiture.ImageSource = new BitmapImage(new Uri(op.FileName));
+                SelectedVoiture.Image = new BitmapImage(new Uri(op.FileName));
             }
         }
 
@@ -242,5 +248,50 @@ namespace MasterDetail.ViewModels
 
         #endregion
  
+        private void OnSaveCommand(object o)
+        {
+            SaveFileDialog saveDialog = new SaveFileDialog();
+            saveDialog.Title = "Sauvegarder un fichier .xml";
+            saveDialog.FileName = ".xml";
+            saveDialog.Filter = "XML-File | *.xml";
+            XmlSerializer xs = new XmlSerializer(typeof(ObservableCollection<Voiture>));
+
+            if (saveDialog.ShowDialog() == true)
+            {
+                using (StreamWriter wr = new StreamWriter(saveDialog.FileName))
+                {
+                    xs.Serialize(wr, ListeVoiture);
+                }
+            }
+        }
+
+        private bool CanSaveCommand(Object o)
+        {
+            return true;
+        }
+
+        private void OnLoadCommand(object o)
+        {
+            OpenFileDialog op = new OpenFileDialog();
+            op.Title = "Selectionner un fichier .xml";
+            op.Filter = "XML-File | *.xml";
+            XmlSerializer xs = new XmlSerializer(typeof(ObservableCollection<Voiture>));
+
+            if (op.ShowDialog() == true)
+            {
+                using (StreamReader rd = new StreamReader(op.FileName))
+                {
+                    ObservableCollection<Voiture> listeVoitureChargee = xs.Deserialize(rd) as ObservableCollection<Voiture>;
+                    this.ListeVoiture = listeVoitureChargee;
+                }
+            }
+            
+        }
+
+        private bool CanLoadCommand(Object o)
+        {
+            return true;
+        }
+
     }
 }

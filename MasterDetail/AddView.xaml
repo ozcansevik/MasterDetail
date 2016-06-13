@@ -1,7 +1,17 @@
 ﻿<Window x:Class="MasterDetail.AddView"
         xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-        Title="AddView" Height="600" Width="800" BorderThickness="1" BorderBrush="#FFB8B8B8" FontWeight="Bold" FontFamily="Yu Gothic UI Semibold">
+        Title="AddView" Height="600" Width="800"
+        Style="{StaticResource WindowStyle}">
+    
+    <Window.Resources>
+        <Style BasedOn="{StaticResource StackPanelContent}"
+        TargetType="StackPanel"
+        x:Key="StackPanel">
+            <Setter Property="HorizontalAlignment" Value="Center" />
+            <Setter Property="VerticalAlignment" Value="Center" />
+        </Style>
+    </Window.Resources>
     
     <Grid >
         <Grid.RowDefinitions>
@@ -16,7 +26,7 @@
             </LinearGradientBrush>
         </Grid.Background>
 
-        <Label HorizontalAlignment="Center" FontSize="24" Grid.Row="0" Content="Ajout d'une voiture" FontFamily="Buxton Sketch"/>
+        <Label Style="{StaticResource LabelPrincipal}" Grid.Row="0" Content="Ajout d'une voiture" />
         <Grid Grid.Row="1">
         <Grid.RowDefinitions>
             <RowDefinition Height="Auto"/>
@@ -29,35 +39,35 @@
             <ColumnDefinition />
             <ColumnDefinition />
         </Grid.ColumnDefinitions>
-        <StackPanel Margin="6" Height="25" Grid.Row="0" Orientation="Horizontal"  HorizontalAlignment="Center" VerticalAlignment="Center">
-            <Label Width="70" Content="Marque : " />
-            <TextBox Width="auto" Text="{Binding NewVoiture.Marque}" Name="Marque" MinWidth="100"/>
+        <StackPanel Style="{StaticResource StackPanel}" Grid.Row="0" >
+            <Label Content="Marque : " />
+            <TextBox Text="{Binding NewVoiture.Marque}" Name="Marque" />
         </StackPanel>
-            <StackPanel Margin="6" Height="25" Grid.Row="1" Orientation="Horizontal" HorizontalAlignment="Center" VerticalAlignment="Center">
-            <Label Width="70" Content="Modele : " />
-                <TextBox Width="auto" Text="{Binding NewVoiture.Modele}" Name="Modele" MinWidth="100"/>
+        <StackPanel Style="{StaticResource StackPanel}" Grid.Row="1" >
+            <Label Content="Modele : " />
+            <TextBox Text="{Binding NewVoiture.Modele}" Name="Modele" />
         </StackPanel>
-        <StackPanel Margin="6" Height="25" Grid.Row="2" Orientation="Horizontal" HorizontalAlignment="Center" VerticalAlignment="Center">
-            <Label Width="70" Content="Type : " />
-             <ComboBox ItemsSource="{Binding ListeTypeVoiture}" Name="Type" MinWidth="100"/>
+        <StackPanel Style="{StaticResource StackPanel}" Grid.Row="2">
+            <Label  Content="Type : " />
+            <ComboBox Width="100" ItemsSource="{Binding ListeTypeVoiture}" Name="Type" />
         </StackPanel>
-            <StackPanel Margin="6" Height="25" Grid.Row="3" Orientation="Horizontal" HorizontalAlignment="Center" VerticalAlignment="Center">
-            <Label Width="70" Content="Puissance : " />
-            <TextBox Width="auto" Text="{Binding NewVoiture.Puissance}" Name="Puissance" MinWidth="100"/>
+            <StackPanel Style="{StaticResource StackPanel}" Grid.Row="3">
+            <Label  Content="Puissance : " />
+            <TextBox  Text="{Binding NewVoiture.Puissance}" Name="Puissance" MinWidth="100"/>
         </StackPanel>
-            <StackPanel Margin="6" Height="auto" Grid.Row="4" Grid.ColumnSpan="2" HorizontalAlignment="Center" VerticalAlignment="Center">
+        <StackPanel Style="{StaticResource StackPanelDescription}" Grid.Row="4" Grid.ColumnSpan="2" HorizontalAlignment="Center" VerticalAlignment="Center">
             <Label Width="75" Content="Description: " />
-             <TextBox  Text="{Binding NewVoiture.Description}" Name="Description" MaxHeight="50" TextAlignment="Center" Width="340" AcceptsReturn="True" TextWrapping="Wrap" VerticalScrollBarVisibility="Visible"  ></TextBox>
-         </StackPanel>
-            <StackPanel Grid.Column="1" Grid.RowSpan="4" Height="auto" Width="250" HorizontalAlignment="Center" VerticalAlignment="Center" Margin="25">
+            <TextBox Style="{StaticResource TextBoxDescription}" Text="{Binding NewVoiture.Description}" Name="Description" />
+        </StackPanel>
+            <StackPanel Style="{StaticResource StackPanelImage}" Grid.Column="1" Grid.RowSpan="4" >
                 <Border BorderBrush="Black" BorderThickness="2">
-                    <Image Source="{Binding NewVoiture.ImageSource}" MinWidth="250" MinHeight="250" />
+                    <Image Source="{Binding NewVoiture.Image}" Width="250" Height="250" />
                  </Border>
                 <Button Width="auto" Height="auto" Name="AjoutImage" Content="Ouvrir une image" Command="{Binding OpenCommand}"/>
          </StackPanel>
         </Grid>
-        <StackPanel HorizontalAlignment="Center" Margin="1" Grid.ColumnSpan="1" Grid.Row="2" Orientation="Horizontal" >
-            <Button BorderBrush="Black" BorderThickness="2" Name="Terminer" Width="80" Height="80" Content="Terminer" Command="{Binding  FinCommand}"  />
+        <StackPanel Style="{StaticResource StackPanelButton}" Grid.ColumnSpan="1" Grid.Row="2" >
+            <Button Style="{StaticResource MainButtons}" Name="Terminer" Width="80" Height="80" Content="Terminer" Command="{Binding  FinCommand}"  />
         </StackPanel>
     </Grid>
 </Window>

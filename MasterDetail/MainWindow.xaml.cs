@@ -35,7 +35,5 @@ namespace MasterDetail
             DataContext = VoitureViewModel;
 
         }
-
-       
     }
 }

@@ -6,11 +6,17 @@ using System.Threading.Tasks;
 using Library;
 using System.Windows.Media.Imaging;
 using System.Windows;
+using System.Xml.Serialization;
+using System.IO;
+using System.Xml;
+using System.Xml.Schema;
 
 namespace Metier
 {
-    public class Voiture : VMBase
-    {
+    [Serializable]
+
+    public class Voiture : VMBase 
+        {
 
         private string _marque;
 
@@ -88,32 +94,49 @@ namespace Metier
             }
         }
 
-        private BitmapImage _imageSource;
-        public BitmapImage ImageSource
+        [XmlIgnore]
+        private BitmapImage _image;
+        [XmlIgnore]
+        public BitmapImage Image
         {
             get
             {
-                return _imageSource;
+                return _image;
             }
 
             set
             {
-                _imageSource = value;
-                NotifyPropertyChanged("ImageSource");
+                _image = value;
+                NotifyPropertyChanged("Image");
             }
         }
 
+        private string m_imagePath;
+        public string ImagePath
+        {
+            get { return m_imagePath; }
+            set
+            {
+                m_imagePath = value;
+                Image = new BitmapImage(new Uri(m_imagePath));
+            }
+        }
 
-        public Voiture(string marque, string modele, string type, int puissance, string description, BitmapImage image)
+        public Voiture(string marque, string modele, string type, int puissance, string description, string imagepath)
         {
             Marque = marque;
             Modele = modele;
             Puissance = puissance;
             Description = description;
             Type = type;
-            ImageSource = image;
+            ImagePath = imagepath;
+
         }
 
+        public Voiture()
+        {
+         
+        }
         public override string ToString()
         {
             return Marque +" "+ Modele;
@@ -121,19 +144,5 @@ namespace Metier
 
     }
 
-    /*
-    public class VoitureFamiliale : Voiture
-    {
-        public int NbPlaces { get; set; }
-        public int TailleCoffre { get; set; }
-        
-        public VoitureFamiliale(string marque, string modele, string type, int puissance, string description, int nbplaces, int taillecoffre)
-            :base(marque,modele,type,puissance,description)
-        {
-            NbPlaces = nbplaces;
-            TailleCoffre = taillecoffre;
-        }
-
-    }
-    */
+    
 }
