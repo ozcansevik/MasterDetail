@@ -1,4 +1,5 @@
-﻿using System;
+﻿using MasterDetail.ViewModels;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -10,30 +11,22 @@ using System.Windows.Documents;
 using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
-using System.Windows.Navigation;
 using System.Windows.Shapes;
-using MasterDetail.ViewModels;
-using Metier;
 
 namespace MasterDetail
 {
     /// <summary>
-    /// Logique d'interaction pour MainWindow.xaml
+    /// Logique d'interaction pour LoginWindow.xaml
     /// </summary>
-    /// 
-   
-        
-    public partial class MainWindow : Window
+    public partial class LoginWindow : Window
     {
-        public MainMVVM VoitureViewModel { get; set; }
+        public LoginMVVM LoginView;
 
-        public MainWindow(LoginMVVM loginVM)
+        public LoginWindow()
         {
             InitializeComponent();
-
-            VoitureViewModel = new MainMVVM(loginVM);
-            DataContext = VoitureViewModel;
-
+            LoginView = new LoginMVVM();
+            DataContext = LoginView;
         }
     }
 }

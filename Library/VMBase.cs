@@ -1,10 +1,13 @@
-﻿using System;
+﻿using Microsoft.Win32;
+using System;
 using System.Collections.Generic;
-
+using System.Collections.ObjectModel;
 using System.ComponentModel;
+using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Xml.Serialization;
 
 namespace Library
 {
@@ -13,7 +16,7 @@ namespace Library
         public event PropertyChangedEventHandler PropertyChanged;
 
         public static List<string> ListeTypeVoiture { get; set; }
-
+        public static List<string> ListTypeUtilisateur { get; set; }
         static VMBase()
         {
 
@@ -24,7 +27,11 @@ namespace Library
             ListeTypeVoiture.Add("Berline");
             ListeTypeVoiture.Add("Coupé");
             ListeTypeVoiture.Add("4x4");
- 
+
+            ListTypeUtilisateur = new List<string>();
+            ListTypeUtilisateur.Add("Vendeur");
+            ListTypeUtilisateur.Add("Client");
+
         }
 
 
@@ -35,6 +42,8 @@ namespace Library
                 PropertyChanged(this, new PropertyChangedEventArgs(info));
             }
         }
+
+      
     }
 }
 

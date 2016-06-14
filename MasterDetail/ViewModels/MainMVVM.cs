@@ -13,6 +13,7 @@ using MasterDetail.Events;
 using System.Xml;
 using System.Xml.Serialization;
 using System.IO;
+using System.Windows;
 
 namespace MasterDetail.ViewModels
 {
@@ -21,8 +22,26 @@ namespace MasterDetail.ViewModels
   
     public class MainMVVM : VMBase
     {
+        public InfoView InfoVue { get; set; }
+        public List<Utilisateur> ListeUtilisateur { get; set; }
 
+        private Visibility _isVendeur;
+
+        public Visibility IsVendeur
+        {
+            get
+            {
+                return _isVendeur;
+            }
+
+            set
+            {
+                _isVendeur = value;
+                
+            }
+        }
         public AddView Add { get; set; }
+        public LoginMVVM LoginVM { get; set; }
 
         private string _textEdit;
 
@@ -101,6 +120,7 @@ namespace MasterDetail.ViewModels
         }
 
         private ObservableCollection<Voiture> _listeVoiture;
+
         public ObservableCollection<Voiture> ListeVoiture {
             get { return _listeVoiture; }
             set
@@ -123,15 +143,24 @@ namespace MasterDetail.ViewModels
 
         public DelegateCommand SaveCommand { get; set; }
         public DelegateCommand LoadCommand { get; set; }
+        public DelegateCommand InfoCommand { get; set; }
+        public DelegateCommand QuitCommand { get; set; }
 
         #endregion
 
         #region Constructeur
 
-        public MainMVVM()
+        public MainMVVM(LoginMVVM loginVM)
             :base()
         {
             ListeVoiture = new ObservableCollection<Voiture>();
+
+            if (loginVM.Utilisateur.Type.Equals("Vendeur"))
+                IsVendeur = Visibility.Visible;
+            else
+                IsVendeur = Visibility.Hidden;
+
+            LoginVM = loginVM;
 
             ListeVoiture.Add(new Voiture("Mercedes", "A45AMG", "Sport", int.Parse("380"), "Un monstre de puissance.", "C:\\Users\\ozcan\\Documents\\COURS\\C# .NET  WPF XAML\\TP IHM\\MasterDetail\\Images\\a45.jpg"));
             ListeVoiture.Add(new Voiture("BMW", "M5", "Sport", int.Parse("550"), "Un bolide à tout épreuve.", "C:\\Users\\ozcan\\Documents\\COURS\\C# .NET  WPF XAML\\TP IHM\\MasterDetail\\Images\\m5.jpg"));
@@ -151,17 +180,39 @@ namespace MasterDetail.ViewModels
             OpenCommand = new DelegateCommand(OnOpenCommand, CanOpenCommand);
             SaveCommand = new DelegateCommand(OnSaveCommand, CanSaveCommand);
             LoadCommand = new DelegateCommand(OnLoadCommand, CanLoadCommand);
+            InfoCommand = new DelegateCommand(OnInfoCommand, CanInfoCommand);
+       //   QuitCommand = new DelegateCommand(OnQuitCommand, CanQuitCommand);
         }
 
-        #endregion
-
-        #region Methodes
-
-        public void AjouterVoiture()
+        private void OnInfoCommand(object obj)
         {
-            
+            ButtonPressedEvent.GetEvent().Handler += CloseInfoView;
+
+            InfoVue = new InfoView(LoginVM);
+            InfoVue.ShowDialog();
+
+        }
+        private bool CanInfoCommand(object obj)
+        {
+            return true;
         }
 
+        private void CloseInfoView(object sender, EventArgs e)
+        {
+            InfoVue.Close();
+
+            ButtonPressedEvent.GetEvent().Handler -= CloseInfoView;
+        }
+        /*
+                private void OnQuitCommand(object obj)
+                {
+
+                }
+                private bool CanQuitCommand(object obj)
+                {
+
+                }
+                */
         #endregion
 
         #region  Evénements
@@ -183,7 +234,7 @@ namespace MasterDetail.ViewModels
         private void CloseAddView(object sender, EventArgs e)
         {
             Add.Close();
-
+            
             ButtonPressedEvent.GetEvent().Handler -= CloseAddView;
         }
 
@@ -248,6 +299,7 @@ namespace MasterDetail.ViewModels
 
         #endregion
  
+
         private void OnSaveCommand(object o)
         {
             SaveFileDialog saveDialog = new SaveFileDialog();

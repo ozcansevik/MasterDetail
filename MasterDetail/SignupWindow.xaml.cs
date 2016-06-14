@@ -10,30 +10,21 @@ using System.Windows.Documents;
 using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
-using System.Windows.Navigation;
 using System.Windows.Shapes;
 using MasterDetail.ViewModels;
-using Metier;
 
-namespace MasterDetail
-{
+namespace MasterDetail {
     /// <summary>
-    /// Logique d'interaction pour MainWindow.xaml
+    /// Logique d'interaction pour SignupWindow.xaml
     /// </summary>
-    /// 
-   
-        
-    public partial class MainWindow : Window
-    {
-        public MainMVVM VoitureViewModel { get; set; }
+    public partial class SignupWindow : Window {
 
-        public MainWindow(LoginMVVM loginVM)
+        public SignupMVVM SignupVM;
+        public SignupWindow()
         {
             InitializeComponent();
-
-            VoitureViewModel = new MainMVVM(loginVM);
-            DataContext = VoitureViewModel;
-
+            SignupVM = new SignupMVVM();
+            DataContext = SignupVM;
         }
     }
 }

@@ -42,7 +42,7 @@ namespace Metier
             set {
                 _modele = value;
                 NotifyPropertyChanged("Modele");
-            
+
             }
         }
 
