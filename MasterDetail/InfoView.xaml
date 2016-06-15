@@ -21,7 +21,7 @@
             <Setter Property="Width" Value="100"/>
             <Setter Property="Height" Value="auto"/>
         </Style>
-        <Style TargetType="Button">
+        <Style BasedOn="{StaticResource Buttons}" TargetType="Button">
             <Setter Property="Height" Value="50"/>
             <Setter Property="Width" Value="auto"/>
         </Style>
@@ -53,7 +53,7 @@
                     <Border BorderBrush="Black" BorderThickness="2" Height="80" Width="80" >
                         <Image Source="{Binding  LoginVM.Utilisateur.ImagePath}" Height="80" Width="80" />
                          </Border>
-                    <Button Style="{StaticResource MainButtons}" Width="auto" Height="auto" Name="AjoutImage" Content="Ouvrir une image" Command="{Binding OpenCommand}" />
+                    <Button Style="{StaticResource Buttons}" Width="auto" Height="auto" Name="AjoutImage" Content="Ouvrir une image" Command="{Binding OpenCommand}" />
                  </StackPanel>
                 <StackPanel Style="{StaticResource StackPanel}" Grid.Row="2" >
                     <Label Content="Nom d'utilisateur : "/>

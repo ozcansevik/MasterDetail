@@ -64,7 +64,7 @@
                 <Border BorderBrush="Black" BorderThickness="2" >
                     <Image Source="{Binding SelectedVoiture.ImagePath}" MinWidth="250" MinHeight="250" />
                 </Border>
-                <Button Style="{StaticResource MainButtons}" Visibility="{Binding IsVendeur}"  Width="auto" Height="auto" Name="AjoutImage" Content="Ouvrir une image" Command="{Binding OpenCommand}" IsEnabled="{Binding IsEnabledAfterEdit}"/>
+                <Button Style="{StaticResource Buttons}" Visibility="{Binding IsVendeur}"  Width="auto" Height="auto" Name="AjoutImage" Content="Ouvrir une image" Command="{Binding OpenCommand}" IsEnabled="{Binding IsEnabledAfterEdit}"/>
             </StackPanel>
         </Grid>
         <StackPanel Orientation="Horizontal" Grid.Column="0" Grid.Row="2">
