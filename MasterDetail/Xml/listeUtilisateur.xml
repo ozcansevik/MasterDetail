@@ -8,7 +8,7 @@
     <Prenom>Eissam</Prenom>
     <Age>20</Age>
     <Adresse>eissam@live.fr</Adresse>
-    <ImagePath>C:\Users\ozcan\Documents\COURS\C# .NET  WPF XAML\TP IHM\MasterDetail\MasterDetail\Images\Icons\1.png</ImagePath>
+    <ImagePath>C:\Users\ozcan\Documents\COURS\C# .NET  WPF XAML\MasterDetail\MasterDetail\Images\Icons\1.png</ImagePath>
   </Utilisateur>
   <Utilisateur>
     <UserName>o</UserName>
@@ -18,6 +18,6 @@
     <Prenom>Ozcan</Prenom>
     <Age>18</Age>
     <Adresse>ozcan@live.fr</Adresse>
-    <ImagePath>Images/image.png</ImagePath>
+    <ImagePath>C:\Users\ozcan\Documents\COURS\C# .NET  WPF XAML\MasterDetail\MasterDetail\Images\Icons\9.png</ImagePath>
   </Utilisateur>
 </ArrayOfUtilisateur>
