@@ -66,22 +66,7 @@ namespace Metier {
             set { _adresse = value; NotifyPropertyChanged("Adresse"); }
         }
 
-        [XmlIgnore]
-        private BitmapImage _image;
-        [XmlIgnore]
-        public BitmapImage Image
-        {
-            get
-            {
-                return _image;
-            }
-
-            set
-            {
-                _image = value;
-                NotifyPropertyChanged("Image");
-            }
-        }
+        
 
         private string m_imagePath;
         public string ImagePath
@@ -90,7 +75,9 @@ namespace Metier {
             set
             {
                 m_imagePath = value;
-                Image = new BitmapImage(new Uri(m_imagePath));
+                NotifyPropertyChanged("ImagePath");
+
+
             }
         }
 
@@ -106,6 +93,7 @@ namespace Metier {
             Adresse = adresse;
         }
 
+        public Utilisateur() { }
 
         public override bool Equals(object obj)
         {
@@ -115,7 +103,7 @@ namespace Metier {
             Utilisateur u = obj as Utilisateur;
             if (u == null) return false;
 
-            return UserName.Equals(u.UserName) && Password.Equals(u.Password);
+            return UserName.Trim().Equals(u.UserName) && Password.Trim().Equals(u.Password);
         }
     }
 

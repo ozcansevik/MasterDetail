@@ -17,6 +17,7 @@ namespace Library
 
         public static List<string> ListeTypeVoiture { get; set; }
         public static List<string> ListTypeUtilisateur { get; set; }
+
         static VMBase()
         {
 
@@ -33,7 +34,6 @@ namespace Library
             ListTypeUtilisateur.Add("Client");
 
         }
-
 
         public void NotifyPropertyChanged(String info)
         {

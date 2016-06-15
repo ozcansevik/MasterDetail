@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ArrayOfUtilisateur xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+  <Utilisateur>
+    <UserName>e</UserName>
+    <Password>e</Password>
+    <Type>Vendeur</Type>
+    <Nom>Bahaki</Nom>
+    <Prenom>Eissam</Prenom>
+    <Age>20</Age>
+    <Adresse>eissam@live.fr</Adresse>
+    <ImagePath>C:\Users\ozcan\Documents\COURS\C# .NET  WPF XAML\TP IHM\MasterDetail\MasterDetail\Images\Icons\1.png</ImagePath>
+  </Utilisateur>
+  <Utilisateur>
+    <UserName>o</UserName>
+    <Password>o</Password>
+    <Type>Client</Type>
+    <Nom>Sevik</Nom>
+    <Prenom>Ozcan</Prenom>
+    <Age>18</Age>
+    <Adresse>ozcan@live.fr</Adresse>
+    <ImagePath>Images/image.png</ImagePath>
+  </Utilisateur>
+</ArrayOfUtilisateur>

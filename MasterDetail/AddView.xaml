@@ -63,7 +63,7 @@
                 <Border BorderBrush="Black" BorderThickness="2">
                     <Image Source="{Binding NewVoiture.Image}" Width="250" Height="250" />
                  </Border>
-                <Button Width="auto" Height="auto" Name="AjoutImage" Content="Ouvrir une image" Command="{Binding OpenCommand}"/>
+                <Button Style="{StaticResource MainButtons}" Width="auto" Height="auto" Name="AjoutImage" Content="Ouvrir une image" Command="{Binding OpenCommand}"/>
          </StackPanel>
         </Grid>
         <StackPanel Style="{StaticResource StackPanelButton}" Grid.ColumnSpan="1" Grid.Row="2" >

@@ -1,6 +1,8 @@
 ﻿using MasterDetail.ViewModels;
+using Metier;
 using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -12,6 +14,8 @@ using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
+using System.Xml;
+using System.Xml.Serialization;
 
 namespace MasterDetail
 {
@@ -23,10 +27,11 @@ namespace MasterDetail
         public LoginMVVM LoginView;
 
         public LoginWindow()
-        {
+        { 
             InitializeComponent();
-            LoginView = new LoginMVVM();
+            LoginView = new LoginMVVM(this);
             DataContext = LoginView;
+            
         }
     }
 }

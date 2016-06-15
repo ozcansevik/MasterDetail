@@ -5,33 +5,58 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:MasterDetail"
         mc:Ignorable="d"
-        Title="LoginWindow" Height="400" Width="600" WindowStartupLocation="CenterScreen">
+        Title="LoginWindow" Height="400" Width="600" WindowStartupLocation="CenterScreen" Style="{StaticResource WindowStyle}">
+
+    <Window.Resources>
+        <Style BasedOn="{StaticResource StackPanelContent}"
+        TargetType="StackPanel"
+        x:Key="StackPanel">
+            <Setter Property="VerticalAlignment" Value="Center" />
+            <Setter Property="Height" Value="25" />
+            <Setter Property="Margin" Value="6" />
+        </Style>
+        <Style BasedOn="{StaticResource StackPanelImage}" x:Key="StackPanelImage" TargetType="StackPanel">
+            <Setter Property="HorizontalAlignment" Value="Right"/>
+            <Setter Property="Margin" Value="0,0,10,80"/>
+        </Style>
+        <Style TargetType="TextBox">
+            <Setter Property="MinWidth" Value="250"/>
+        </Style>
+        <Style TargetType="Button">
+            <Setter Property="Width" Value="80"/>
+            <Setter Property="Height" Value="80"/>
+            <Setter Property="Margin" Value="20"/>
+            <Setter Property="BorderBrush" Value="Black"/>
+            <Setter Property="BorderThickness" Value="2"/>
+        </Style>
+    </Window.Resources>
+
     <Grid >
         <Grid.RowDefinitions>
             <RowDefinition Height="3*"/>
-            <RowDefinition Height="auto" />
-            <RowDefinition Height="auto"/>
+            <RowDefinition Height="1*" />
+            <RowDefinition Height="1*"/>
             <RowDefinition Height="5*"/>
         </Grid.RowDefinitions>
-        <Grid.Background>
-            <LinearGradientBrush EndPoint="0.5,1" MappingMode="RelativeToBoundingBox" StartPoint="0.5,0">
-                <GradientStop Color="#FF252424" Offset="1"/>
-                <GradientStop Color="White"/>
-            </LinearGradientBrush>
-        </Grid.Background>
-
-        <Label Width="auto" HorizontalAlignment="Center" FontSize="24" Grid.Row="0" Content="Identification" />
-        <StackPanel Margin="6" Height="25" Grid.Row="1" Orientation="Horizontal" VerticalAlignment="Center">
+      
+        <Label Style="{StaticResource LabelPrincipal}" Grid.Row="0" Content="Identification" />
+        <StackPanel Style="{StaticResource StackPanel}" Grid.Row="1" >
             <Label Width="90" Content="Login :" />
-            <TextBox Width="auto" MinWidth="250" Text="{Binding Utilisateur.UserName}"/>
+            <TextBox Text="{Binding Utilisateur.UserName}"/>
         </StackPanel>
-        <StackPanel Margin="6" Height="25" Grid.Row="2" Orientation="Horizontal" VerticalAlignment="Center">
+        <StackPanel Style="{StaticResource StackPanel}" Margin="6" Height="25" Grid.Row="2" Orientation="Horizontal" VerticalAlignment="Center">
             <Label Width="90" Content="Mot de passe :" />
-            <TextBox Width="auto" MinWidth="250" Text="{Binding Utilisateur.Password}"/>
+            <TextBox  Text="{Binding Utilisateur.Password}"/>
         </StackPanel>
-        <StackPanel HorizontalAlignment="Center" Margin="1" Grid.Row="3"  Orientation="Horizontal" >
-            <Button BorderBrush="Black" BorderThickness="2" x:Name="Login" Width="80" Height="80" Margin="20" Content="Se Connecter" Command="{Binding LoginCommand}" />
-            <Button BorderBrush="Black" BorderThickness="2" x:Name="NewLogin" Width="80" Height="80" Margin="20" Content="S'inscrire" Command="{Binding SignupCommand}" />
+        <StackPanel Style="{StaticResource StackPanelButton}" Grid.Row="3" >
+            <Button x:Name="Login" Content="Se Connecter" Command="{Binding LoginCommand}" />
+            <Button x:Name="NewLogin" Content="S'inscrire" Command="{Binding SignupCommand}" />
+        </StackPanel>
+        <StackPanel Grid.RowSpan="4" Style="{StaticResource StackPanelImage}" >
+            <Border  BorderThickness="2" >
+                <Image Source="Images/Icons/user.png" MaxWidth="150" >
+                </Image>
+            </Border>
         </StackPanel>
     </Grid>
 </Window>

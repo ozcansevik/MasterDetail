@@ -69,7 +69,7 @@ namespace MasterDetail.ViewModels
               "Portable Network Graphic (*.png)|*.png";
             if (op.ShowDialog() == true)
             {
-                NewVoiture.Image = new BitmapImage(new Uri(op.FileName));
+               NewVoiture.ImagePath = op.FileName;
             }
         }
 

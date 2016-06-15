@@ -26,12 +26,14 @@ namespace MasterDetail
     public partial class MainWindow : Window
     {
         public MainMVVM VoitureViewModel { get; set; }
-
+        public LoginMVVM LoginVM { get; set; }
         public MainWindow(LoginMVVM loginVM)
         {
             InitializeComponent();
 
-            VoitureViewModel = new MainMVVM(loginVM);
+            LoginVM = loginVM;
+
+            VoitureViewModel = new MainMVVM(this);
             DataContext = VoitureViewModel;
 
         }

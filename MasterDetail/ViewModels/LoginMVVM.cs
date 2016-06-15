@@ -7,13 +7,25 @@ using Metier;
 using Library;
 using System.Windows;
 using MasterDetail.Events;
+using System.Xml.Serialization;
+using System.IO;
 
 namespace MasterDetail.ViewModels {
-    public class LoginMVVM : VMBase 
-    {
+    public class LoginMVVM : VMBase {
+
+        #region View
+        public LoginWindow Login { get; set; }
         public SignupWindow Signup { get; set; }
+
+        #endregion
+
+        #region Delegates
         public DelegateCommand LoginCommand { get; set; }
         public DelegateCommand SignupCommand { get; set; }
+
+        #endregion
+
+        #region ProprietesUtilisateur
         public List<Utilisateur> ListUtilisateur { get; set; }
 
         private Utilisateur _utilisateur;
@@ -24,21 +36,35 @@ namespace MasterDetail.ViewModels {
             set { _utilisateur = value; NotifyPropertyChanged("Utilisateur"); }
         }
 
+        #endregion
 
-        public LoginMVVM()
+        #region Constructeur
+        public LoginMVVM(LoginWindow loginWindow)
         {
-            
+            Login = loginWindow;
 
-            ListUtilisateur = new List<Utilisateur>();
-            ListUtilisateur.Add(new Utilisateur("e", "e", "Vendeur", "Bahaki", "Eissam", "20", "C:\\Users\\ozcan\\Documents\\COURS\\C# .NET  WPF XAML\\TP IHM\\MasterDetail\\Images\\Icons\\1.png","eissam@live.fr"));
-            ListUtilisateur.Add(new Utilisateur("o", "o", "Client", "Sevik", "Ozcan", "18", "C:\\Users\\ozcan\\Documents\\COURS\\C# .NET  WPF XAML\\TP IHM\\MasterDetail\\Images\\Icons\\9.png", "ozcan@live.fr"));
+            XmlSerializer xs = new XmlSerializer(typeof(List<Utilisateur>));
+
+            StreamReader rd = new StreamReader("Xml/listeUtilisateur.xml");
+
+            ListUtilisateur = xs.Deserialize(rd) as List<Utilisateur>;
+
+            /*ListUtilisateur = new List<Utilisateur>();
+
+            ListUtilisateur.Add(new Utilisateur("e", "e", "Vendeur", "Bahaki", "Eissam", "20", "Images/image.png", "eissam@live.fr"));
+            ListUtilisateur.Add(new Utilisateur("o", "o", "Client", "Sevik", "Ozcan", "18", "Images/image.png", "ozcan@live.fr"));*/
 
             LoginCommand = new DelegateCommand(OnLoginCommand, CanExecuteLogin);
             SignupCommand = new DelegateCommand(OnSignupCommand, CanExecuteSignup);
 
-            Utilisateur = new Utilisateur("", "", "", "", "", "", "C:\\Users\\ozcan\\Documents\\COURS\\C# .NET  WPF XAML\\TP IHM\\MasterDetail\\Images\\image.png","");
+            Utilisateur = new Utilisateur("", "", "", "", "", "", "Images/image.png","");
         }
 
+        #endregion
+
+        #region Evenements
+
+        #region Signup
         private void OnSignupCommand(object obj)
         {
             Signup = new SignupWindow();
@@ -60,23 +86,29 @@ namespace MasterDetail.ViewModels {
             return true;
         }
 
+        #endregion
+
+        #region Login
         private void OnLoginCommand(object o)
         {
+
             foreach (Utilisateur u in ListUtilisateur)
             {
                 if (Utilisateur.Equals(u))
                 {
                     Utilisateur = u;
 
-                    MainWindow mainwindow = new MainWindow(this);
-                    mainwindow.ShowDialog();
-                    Utilisateur = new Utilisateur("", "", "", "", "", "", "C:\\Users\\ozcan\\Documents\\COURS\\C# .NET  WPF XAML\\TP IHM\\MasterDetail\\Images\\image.png", "");
+                    MainWindow Mainwindow = new MainWindow(this);
+                    Login.Hide();
+                    Mainwindow.ShowDialog();
+                    
+                   Utilisateur = new Utilisateur("", "", "", "", "", "", "Images/image.png", "");
 
                     return;
                 }
             }
             MessageBox.Show("Utilisateur Incorrect");
-            Utilisateur = new Utilisateur("", "", "","","","", "C:\\Users\\ozcan\\Documents\\COURS\\C# .NET  WPF XAML\\TP IHM\\MasterDetail\\Images\\image.png","");
+            Utilisateur = new Utilisateur("", "", "","","","", "Images/image.png","");
         }
 
         private bool CanExecuteLogin(object o)
@@ -84,5 +116,8 @@ namespace MasterDetail.ViewModels {
             return true;
         }
 
+        #endregion
+
+        #endregion
     }
 }

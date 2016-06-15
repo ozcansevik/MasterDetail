@@ -20,11 +20,9 @@ namespace MasterDetail.ViewModels
 
     [Serializable]
   
-    public class MainMVVM : VMBase
-    {
-        public InfoView InfoVue { get; set; }
-        public List<Utilisateur> ListeUtilisateur { get; set; }
-
+    public class MainMVVM : VMBase{
+        
+        
         private Visibility _isVendeur;
 
         public Visibility IsVendeur
@@ -37,11 +35,9 @@ namespace MasterDetail.ViewModels
             set
             {
                 _isVendeur = value;
-                
+                NotifyPropertyChanged("IsVendeur");
             }
         }
-        public AddView Add { get; set; }
-        public LoginMVVM LoginVM { get; set; }
 
         private string _textEdit;
 
@@ -59,8 +55,6 @@ namespace MasterDetail.ViewModels
         }
     
         #region Bool
-
-       
 
         private bool _isEnabledAfterEdit;
         public bool IsEnabledAfterEdit
@@ -148,26 +142,33 @@ namespace MasterDetail.ViewModels
 
         #endregion
 
+        #region Views
+        public MainWindow MainWindow { get; set; }
+        public AddView Add { get; set; }
+        public InfoView InfoVue { get; set; }
+
+        #endregion
+
         #region Constructeur
 
-        public MainMVVM(LoginMVVM loginVM)
+        public MainMVVM(MainWindow mainWindow)
             :base()
         {
+            MainWindow = mainWindow;
+
             ListeVoiture = new ObservableCollection<Voiture>();
 
-            if (loginVM.Utilisateur.Type.Equals("Vendeur"))
+            if (MainWindow.LoginVM.Utilisateur.Type.Equals("Vendeur"))
                 IsVendeur = Visibility.Visible;
             else
                 IsVendeur = Visibility.Hidden;
 
-            LoginVM = loginVM;
-
-            ListeVoiture.Add(new Voiture("Mercedes", "A45AMG", "Sport", int.Parse("380"), "Un monstre de puissance.", "C:\\Users\\ozcan\\Documents\\COURS\\C# .NET  WPF XAML\\TP IHM\\MasterDetail\\Images\\a45.jpg"));
-            ListeVoiture.Add(new Voiture("BMW", "M5", "Sport", int.Parse("550"), "Un bolide à tout épreuve.", "C:\\Users\\ozcan\\Documents\\COURS\\C# .NET  WPF XAML\\TP IHM\\MasterDetail\\Images\\m5.jpg"));
-            ListeVoiture.Add(new Voiture("Ford", "Mustang", "Sport", int.Parse("500"), "Attention à vos oreilles.Cette voiture va vous étonner par sa rapidité. Voiture américaine equipé d'un moteur v10.","C:\\Users\\ozcan\\Documents\\COURS\\C# .NET  WPF XAML\\TP IHM\\MasterDetail\\Images\\mustang.jpg"));
-            ListeVoiture.Add(new Voiture("Mercedes", "C63AMG", "Sport", int.Parse("750"), "Grosse berline sportive allemande.", "C:\\Users\\ozcan\\Documents\\COURS\\C# .NET  WPF XAML\\TP IHM\\MasterDetail\\Images\\c63.jpg"));
-            ListeVoiture.Add(new Voiture("Citroen", "Saxo", "Berline", int.Parse("60"), "Voiture parfaite pour jeune pilote. Ideal pour les plans Tinder", "C:\\Users\\ozcan\\Documents\\COURS\\C# .NET  WPF XAML\\TP IHM\\MasterDetail\\Images\\saxo.jpg"));
-            ListeVoiture.Add(new Voiture("Audi", "RS3", "Sport", int.Parse("367"), "Voiture pour les passionés de la conduite", "C:\\Users\\ozcan\\Documents\\COURS\\C# .NET  WPF XAML\\TP IHM\\MasterDetail\\Images\\rs3.jpg"));
+            ListeVoiture.Add(new Voiture("Mercedes", "A45AMG", "Sport", int.Parse("380"), "Un monstre de puissance.", "Images/a45.jpg"));
+            ListeVoiture.Add(new Voiture("BMW", "M5", "Sport", int.Parse("550"), "Un bolide à tout épreuve.", "Images/m5.jpg"));
+            ListeVoiture.Add(new Voiture("Ford", "Mustang", "Sport", int.Parse("500"), "Attention à vos oreilles.Cette voiture va vous étonner par sa rapidité. Voiture américaine equipé d'un moteur v10.","Images/mustang.jpg"));
+            ListeVoiture.Add(new Voiture("Mercedes", "C63AMG", "Sport", int.Parse("750"), "Grosse berline sportive allemande.", "Images/c63.jpg"));
+            ListeVoiture.Add(new Voiture("Citroen", "Saxo", "Berline", int.Parse("60"), "Voiture parfaite pour jeune pilote. Ideal pour les plans Tinder", "Images/saxo.jpg"));
+            ListeVoiture.Add(new Voiture("Audi", "RS3", "Sport", int.Parse("367"), "Voiture pour les passionés de la conduite", "Images/rs3.jpg"));
 
             TextEdit = "Modifier";
             IsReadOnly = true;
@@ -181,17 +182,34 @@ namespace MasterDetail.ViewModels
             SaveCommand = new DelegateCommand(OnSaveCommand, CanSaveCommand);
             LoadCommand = new DelegateCommand(OnLoadCommand, CanLoadCommand);
             InfoCommand = new DelegateCommand(OnInfoCommand, CanInfoCommand);
-       //   QuitCommand = new DelegateCommand(OnQuitCommand, CanQuitCommand);
+            QuitCommand = new DelegateCommand(OnQuitCommand, CanQuitCommand);
         }
 
+        #endregion
+
+        #region  Evénements
+
+        #region Info
         private void OnInfoCommand(object obj)
         {
             ButtonPressedEvent.GetEvent().Handler += CloseInfoView;
 
-            InfoVue = new InfoView(LoginVM);
+            InfoVue = new InfoView(MainWindow.LoginVM);
+
+           
             InfoVue.ShowDialog();
 
+            if (InfoVue.infoVM.ClickOnFin)
+            {
+                XmlSerializer xs = new XmlSerializer(typeof(List<Utilisateur>));
+
+                StreamWriter wr = new StreamWriter("Xml/listeUtilisateur.xml");
+
+                xs.Serialize(wr, MainWindow.LoginVM.ListUtilisateur);
+
+            }
         }
+
         private bool CanInfoCommand(object obj)
         {
             return true;
@@ -203,19 +221,22 @@ namespace MasterDetail.ViewModels
 
             ButtonPressedEvent.GetEvent().Handler -= CloseInfoView;
         }
-        /*
-                private void OnQuitCommand(object obj)
-                {
 
-                }
-                private bool CanQuitCommand(object obj)
-                {
-
-                }
-                */
         #endregion
 
-        #region  Evénements
+        #region Quit
+
+        private void OnQuitCommand(object obj)
+        {
+            MainWindow.LoginVM.Login.Show();
+            MainWindow.Hide();
+        }
+        private bool CanQuitCommand(object obj)
+        {
+            return true;
+        }
+
+        #endregion
 
         #region Add
         private void OnAddCommand(object o)
@@ -286,7 +307,8 @@ namespace MasterDetail.ViewModels
               "Portable Network Graphic (*.png)|*.png";
             if (op.ShowDialog() == true)
             {
-                SelectedVoiture.Image = new BitmapImage(new Uri(op.FileName));
+                //  SelectedVoiture.Image = new BitmapImage(new Uri(op.FileName));
+                SelectedVoiture.ImagePath = op.FileName;
             }
         }
 
@@ -297,9 +319,7 @@ namespace MasterDetail.ViewModels
 
         #endregion
 
-        #endregion
- 
-
+        #region Save
         private void OnSaveCommand(object o)
         {
             SaveFileDialog saveDialog = new SaveFileDialog();
@@ -322,6 +342,9 @@ namespace MasterDetail.ViewModels
             return true;
         }
 
+        #endregion
+
+        #region Load
         private void OnLoadCommand(object o)
         {
             OpenFileDialog op = new OpenFileDialog();
@@ -337,13 +360,17 @@ namespace MasterDetail.ViewModels
                     this.ListeVoiture = listeVoitureChargee;
                 }
             }
-            
+
         }
 
         private bool CanLoadCommand(Object o)
         {
             return true;
         }
+
+        #endregion
+
+        #endregion
 
     }
 }

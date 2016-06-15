@@ -4,6 +4,12 @@
              StartupUri="LoginWindow.xaml">
     
     <Application.Resources>
+
+        <XmlDataProvider x:Key="xmlListeUtilisateur" Source="listeutilisateur.xml"/>
+
+
+
+
         <Style x:Key="WindowStyle" TargetType="Window">
             <Setter Property="BorderThickness" Value="1" />
             <Setter Property="BorderBrush" Value="#FFB8B8B8" />

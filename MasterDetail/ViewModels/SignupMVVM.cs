@@ -9,7 +9,7 @@ using MasterDetail.Events;
 using System.Windows;
 
 namespace MasterDetail.ViewModels {
-    public class SignupMVVM : VMBase{
+    public class SignupMVVM : VMBase {
 
         public bool ClickOnSignup { get; set; }
 
@@ -29,8 +29,12 @@ namespace MasterDetail.ViewModels {
             }
         }
 
+        #region Delegates
         public DelegateCommand SignupCommand { get; set; }
 
+        #endregion
+
+        #region Constructeur
         public SignupMVVM()
         {
             ClickOnSignup = false;
@@ -38,6 +42,11 @@ namespace MasterDetail.ViewModels {
             NewUtilisateur = new Utilisateur("", "", "", "", "", "", "C:\\Users\\ozcan\\Documents\\COURS\\C# .NET  WPF XAML\\TP IHM\\MasterDetail\\Images\\image.png","");
         }
 
+        #endregion
+
+        #region Evenements
+
+        #region Signup
         private void OnSignupCommand(object obj)
         {
             MessageBox.Show("Inscription effectué vous pouvez vous connectez");
@@ -49,5 +58,8 @@ namespace MasterDetail.ViewModels {
             return true;
         }
 
+        #endregion
+
+        #endregion
     }
 }

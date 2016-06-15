@@ -20,7 +20,7 @@
     <DebugSymbols>true</DebugSymbols>
     <DebugType>full</DebugType>
     <Optimize>false</Optimize>
-    <OutputPath>C:\travail\</OutputPath>
+    <OutputPath>.\</OutputPath>
     <DefineConstants>DEBUG;TRACE</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
@@ -141,6 +141,42 @@
     </ProjectReference>
   </ItemGroup>
   <ItemGroup />
+  <ItemGroup>
+    <Resource Include="Images\exit.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\delete.png" />
+    <Resource Include="Images\edit.png" />
+    <Resource Include="Images\image.png" />
+    <Resource Include="Images\info.png" />
+    <Resource Include="Images\load.png" />
+    <Resource Include="Images\m5.jpg" />
+    <Resource Include="Images\mustang.jpg" />
+    <Resource Include="Images\rs3.jpg" />
+    <Resource Include="Images\save.png" />
+    <Resource Include="Images\saxo.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\a45.jpg" />
+    <Resource Include="Images\add.png" />
+    <Resource Include="Images\c63.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\Icons\1.png" />
+    <Resource Include="Images\Icons\2.png" />
+    <Resource Include="Images\Icons\3.png" />
+    <Resource Include="Images\Icons\4.png" />
+    <Resource Include="Images\Icons\5.png" />
+    <Resource Include="Images\Icons\6.png" />
+    <Resource Include="Images\Icons\7.png" />
+    <Resource Include="Images\Icons\8.png" />
+    <Resource Include="Images\Icons\9.png" />
+    <Resource Include="Images\Icons\user.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Xml\listeUtilisateur.xml" />
+    <Resource Include="Xml\listevoiture.xml" />
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.

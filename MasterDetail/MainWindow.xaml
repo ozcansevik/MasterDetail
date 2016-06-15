@@ -62,7 +62,7 @@
             </StackPanel>
             <StackPanel Style="{StaticResource StackPanelImage}" Grid.Column="1" Grid.RowSpan="4" >
                 <Border BorderBrush="Black" BorderThickness="2" >
-                    <Image Source="{Binding SelectedVoiture.Image}" MinWidth="250" MinHeight="250" />
+                    <Image Source="{Binding SelectedVoiture.ImagePath}" MinWidth="250" MinHeight="250" />
                 </Border>
                 <Button Style="{StaticResource MainButtons}" Visibility="{Binding IsVendeur}"  Width="auto" Height="auto" Name="AjoutImage" Content="Ouvrir une image" Command="{Binding OpenCommand}" IsEnabled="{Binding IsEnabledAfterEdit}"/>
             </StackPanel>
@@ -71,14 +71,14 @@
             <Button ToolTip="Informations" Style="{StaticResource MainButtons}" HorizontalAlignment="Left" Name="Info"  Command="{Binding InfoCommand}" >
                 <Button.Template>
                     <ControlTemplate>
-                        <Image Width="60" Height="60"  Source="C:\\Users\\ozcan\\Documents\\COURS\\C# .NET  WPF XAML\\TP IHM\\MasterDetail\\Images\\info.png"/>
+                        <Image Width="60" Height="60"  Source="Images/info.png"/>
                     </ControlTemplate>
                 </Button.Template>
             </Button>
             <Button ToolTip="Quitter" Style="{StaticResource MainButtons}" HorizontalAlignment="Right" Name="Quitter"  Command="{Binding QuitCommand}" >
                 <Button.Template>
                 <ControlTemplate>
-                        <Image Width="60" Height="60"  Source="C:\\Users\\ozcan\\Documents\\COURS\\C# .NET  WPF XAML\\TP IHM\\MasterDetail\\Images\\exit.png"/>
+                        <Image Width="60" Height="60"  Source="Images/exit.png"/>
                 </ControlTemplate>
                 </Button.Template> 
             </Button>
@@ -87,7 +87,7 @@
             <Button ToolTip="Ajouter" Visibility="{Binding IsVendeur}"  Style="{StaticResource MainButtons}" Name="Ajouter" Content="Ajouter" Command="{Binding  AddCommand}">
                 <Button.Template>
                     <ControlTemplate>
-                        <Image Width="60" Height="60"  Source="C:\\Users\\ozcan\\Documents\\COURS\\C# .NET  WPF XAML\\TP IHM\\MasterDetail\\Images\\add.png"/>
+                        <Image Width="60" Height="60"  Source="Images/add.png"/>
                     </ControlTemplate>
                 </Button.Template>
             </Button>
@@ -96,7 +96,7 @@
                     <ControlTemplate>
                         <StackPanel>
                             <TextBox HorizontalContentAlignment="Center" Background="Transparent" BorderThickness="0" Text="{Binding TextEdit}" FontSize="16" Foreground="White"/>
-                        <Image Width="50" Height="50"  Source="C:\\Users\\ozcan\\Documents\\COURS\\C# .NET  WPF XAML\\TP IHM\\MasterDetail\\Images\\edit.png"/>
+                            <Image Width="50" Height="50"  Source="Images/edit.png"/>
                          </StackPanel>
                      </ControlTemplate>
                 </Button.Template>
@@ -104,21 +104,21 @@
             <Button ToolTip="Supprimer" Visibility="{Binding IsVendeur}"  Style="{StaticResource MainButtons}" Name="Supprimer"  Content="Supprimer"  Command="{Binding  DelCommand}" IsEnabled="{Binding IsEnabledButton}">
                 <Button.Template>
                     <ControlTemplate>
-                        <Image Width="60" Height="60"  Source="C:\\Users\\ozcan\\Documents\\COURS\\C# .NET  WPF XAML\\TP IHM\\MasterDetail\\Images\\delete.png"/>
+                        <Image Width="60" Height="60"  Source="Images/delete.png"/>
                     </ControlTemplate>
                 </Button.Template>
             </Button>
             <Button ToolTip="Sauvegarder" Visibility="{Binding IsVendeur}"  Style="{StaticResource MainButtons}" Name="Sauvegarder"  Content="Sauvegarder"  Command="{Binding  SaveCommand}" >
                 <Button.Template>
                     <ControlTemplate>
-                        <Image Width="60" Height="60"  Source="C:\\Users\\ozcan\\Documents\\COURS\\C# .NET  WPF XAML\\TP IHM\\MasterDetail\\Images\\save.png"/>
+                        <Image Width="60" Height="60"  Source="Images/save.png"/>
                     </ControlTemplate>
                 </Button.Template>
             </Button>
             <Button ToolTip="Charger" Visibility="{Binding IsVendeur}"  Style="{StaticResource MainButtons}" Name="Charger"  Content="Charger"  Command="{Binding  LoadCommand}" >
                 <Button.Template>
                     <ControlTemplate>
-                        <Image Width="60" Height="60"  Source="C:\\Users\\ozcan\\Documents\\COURS\\C# .NET  WPF XAML\\TP IHM\\MasterDetail\\Images\\load.png"/>
+                        <Image Width="60" Height="60"  Source="Images/load.png"/>
                     </ControlTemplate>
                 </Button.Template>
             </Button>

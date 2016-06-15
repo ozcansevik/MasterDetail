@@ -94,23 +94,6 @@ namespace Metier
             }
         }
 
-        [XmlIgnore]
-        private BitmapImage _image;
-        [XmlIgnore]
-        public BitmapImage Image
-        {
-            get
-            {
-                return _image;
-            }
-
-            set
-            {
-                _image = value;
-                NotifyPropertyChanged("Image");
-            }
-        }
-
         private string m_imagePath;
         public string ImagePath
         {
@@ -118,7 +101,7 @@ namespace Metier
             set
             {
                 m_imagePath = value;
-                Image = new BitmapImage(new Uri(m_imagePath));
+                NotifyPropertyChanged("ImagePath");
             }
         }
 

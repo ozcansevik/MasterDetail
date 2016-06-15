@@ -5,9 +5,33 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:MasterDetail"
         mc:Ignorable="d"
-        Title="InfoView" Height="600" Width="600" >
+        Title="InfoView" Height="690" Width="600" Style="{StaticResource WindowStyle}">
 
-
+    <Window.Resources>
+        <Style x:Key="StackPanel" TargetType="StackPanel">
+            <Setter Property="Height" Value="auto"/>
+            <Setter Property="Margin" Value="10"/>
+            <Setter Property="HorizontalAlignment" Value="Center"/>
+            <Setter Property="Orientation" Value="Horizontal"/>
+        </Style>
+        <Style TargetType="Label">
+            <Setter Property="Width" Value="120"/>
+        </Style>
+        <Style TargetType="TextBox">
+            <Setter Property="Width" Value="100"/>
+            <Setter Property="Height" Value="auto"/>
+        </Style>
+        <Style TargetType="Button">
+            <Setter Property="Height" Value="50"/>
+            <Setter Property="Width" Value="auto"/>
+        </Style>
+        <Style x:Key="StackPanelImage" BasedOn="{StaticResource StackPanelImage}"
+        TargetType="StackPanel">
+            <Setter Property="Height" Value="120" />
+            <Setter Property="Width" Value="200" />
+            <Setter Property="Margin" Value="20" />
+        </Style>
+    </Window.Resources>
 
     <TabControl Grid.Row="0">
         <TabItem Width="120" Header="Mes Informations">
@@ -25,42 +49,43 @@
                     <RowDefinition Height="auto"/>
                 </Grid.RowDefinitions>
                 <Label Style="{StaticResource LabelPrincipal}" Content="Mes informations" />
-                <StackPanel Height="auto" Margin="10" HorizontalAlignment="Center" Grid.Row="1" Orientation="Horizontal">
-                    <Border BorderBrush="Black" BorderThickness="2" >
-                        <Image Source="{Binding  LoginVM.Utilisateur.Image}" Height="60" Width="60"/>
-                    </Border>
+                <StackPanel Style="{StaticResource StackPanelImage}" Grid.Row="1">
+                    <Border BorderBrush="Black" BorderThickness="2" Height="80" Width="80" >
+                        <Image Source="{Binding  LoginVM.Utilisateur.ImagePath}" Height="80" Width="80" />
+                         </Border>
+                    <Button Style="{StaticResource MainButtons}" Width="auto" Height="auto" Name="AjoutImage" Content="Ouvrir une image" Command="{Binding OpenCommand}" />
+                 </StackPanel>
+                <StackPanel Style="{StaticResource StackPanel}" Grid.Row="2" >
+                    <Label Content="Nom d'utilisateur : "/>
+                    <TextBox Text="{Binding LoginVM.Utilisateur.UserName}"/>
                 </StackPanel>
-                <StackPanel Height="auto" Margin="10" HorizontalAlignment="Center" Grid.Row="2" Orientation="Horizontal">
-                    <Label Width="100" Content="Login : "/>
-                    <TextBox Text="{Binding LoginVM.Utilisateur.UserName}" Height="auto" />
+                <StackPanel Style="{StaticResource StackPanel}" Grid.Row="3">
+                    <Label Content="Mot de passe : " />
+                    <TextBox Text="{Binding LoginVM.Utilisateur.Password}"/>
                 </StackPanel>
-                <StackPanel Height="auto" Margin="10"   HorizontalAlignment="Center" Grid.Row="3" Orientation="Horizontal">
-                    <Label  Width="100" Content="Mot de passe : " />
-                    <TextBox Text="{Binding LoginVM.Utilisateur.Password}" Height="auto" Width="auto" />
+                <StackPanel Style="{StaticResource StackPanel}" Grid.Row="4">
+                    <Label  Content="Nom : " />
+                    <TextBox Text="{Binding LoginVM.Utilisateur.Nom}"/>
                 </StackPanel>
-                <StackPanel Height="auto" Margin="10" HorizontalAlignment="Center" Grid.Row="4" Orientation="Horizontal">
-                    <Label  Width="100" Content="Nom : " />
-                    <TextBox Text="{Binding LoginVM.Utilisateur.Nom}" Height="auto"  />
+                <StackPanel Style="{StaticResource StackPanel}" Grid.Row="5">
+                    <Label Content="Prenom : " />
+                    <TextBox Text="{Binding LoginVM.Utilisateur.Prenom}"/>
                 </StackPanel>
-                <StackPanel Height="auto" Margin="10"  HorizontalAlignment="Center" Grid.Row="5" Orientation="Horizontal">
-                    <Label   Width="100" Content="Prenom : " />
-                    <TextBox Text="{Binding LoginVM.Utilisateur.Prenom}" Height="auto" />
+                <StackPanel Style="{StaticResource StackPanel}" Grid.Row="6">
+                    <Label Content="Type : " />
+                    <TextBox IsReadOnly="True" Text="{Binding LoginVM.Utilisateur.Type}"/>
                 </StackPanel>
-                <StackPanel Height="auto" Margin="10"  HorizontalAlignment="Center" Grid.Row="6" Orientation="Horizontal">
-                    <Label   Width="100" Content="Type : " />
-                    <TextBox IsReadOnly="True" Text="{Binding LoginVM.Utilisateur.Type}" Height="auto" />
+                <StackPanel Style="{StaticResource StackPanel}" Grid.Row="7">
+                    <Label Content="Age: " />
+                    <TextBox Text="{Binding LoginVM.Utilisateur.Age}" />
                 </StackPanel>
-                <StackPanel Height="auto" Margin="10"  HorizontalAlignment="Center" Grid.Row="7" Orientation="Horizontal">
-                    <Label   Width="100" Content="Age: " />
-                    <TextBox Text="{Binding LoginVM.Utilisateur.Age}" Height="auto" />
+                <StackPanel Style="{StaticResource StackPanel}" Grid.Row="8">
+                    <Label Content="Adresse : " />
+                    <TextBox Text="{Binding LoginVM.Utilisateur.Adresse}"/>
                 </StackPanel>
-                <StackPanel Height="auto" Margin="10"  HorizontalAlignment="Center" Grid.Row="8" Orientation="Horizontal">
-                    <Label   Width="100" Content="Adresse : " />
-                    <TextBox Text="{Binding LoginVM.Utilisateur.Adresse}" Height="auto" />
-                </StackPanel>
-                <StackPanel Margin="20"  HorizontalAlignment="Center" Height="auto" Orientation="Horizontal" Grid.Row="9">
-                    <Button  Height="50" Width="60"  Name="Terminer" Content="Terminer" Command="{Binding FinCommand}"/>
-                    <Button  Margin="100,0,0,0" Height="50" Width="auto"  Name="Supprimer"  Content="Supprimer mon compte" Command="{Binding DelCommand}"/>
+                <StackPanel Style="{StaticResource StackPanel}" Grid.Row="9">
+                    <Button Name="Enregistrer" Content="Enregistrer" Command="{Binding SaveCommand}"/>
+                    <Button  Margin="100,0,0,0" Name="Supprimer"  Content="Supprimer mon compte" Command="{Binding DelCommand}"/>
                 </StackPanel>
             </Grid>
 
@@ -90,11 +115,11 @@
                 </ListView>
                 <StackPanel VerticalAlignment="Center" Grid.Column="1" Grid.Row="1">
                     <Border  Width="100" Height="100" BorderBrush="Black" BorderThickness="2" >
-                        <Image Source="{Binding  SelectedUtilisateur.Image}" Height="100" Width="100"/>
+                        <Image Source="{Binding  SelectedUtilisateur.ImagePath}" Height="100" Width="100"/>
                     </Border>
-                    <StackPanel Width="auto" Margin="50" Orientation="Horizontal">
-                        <Label Width="100" Content="Contactez-moi :" />
-                        <TextBox IsReadOnly="True" Width="200" Text="{Binding SelectedUtilisateur.Adresse}" />
+                    <StackPanel  Margin="50" Orientation="Horizontal">
+                        <Label Content="Contactez-moi :" />
+                        <TextBox IsReadOnly="True"  Text="{Binding SelectedUtilisateur.Adresse}" />
                     </StackPanel>
                 </StackPanel>
             </Grid>
