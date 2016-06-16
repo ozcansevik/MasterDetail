@@ -6,6 +6,8 @@ using System.Threading.Tasks;
 using Library;
 using System.Windows.Media.Imaging;
 using System.Xml.Serialization;
+using System.Device.Location;
+using Microsoft.Maps.MapControl.WPF;
 
 namespace Metier {
     public class Utilisateur : VMBase {
@@ -58,12 +60,12 @@ namespace Metier {
             set { _age = value; NotifyPropertyChanged("Age"); }
         }
 
-        private string _adresse;
+        private string _mail;
 
-        public string Adresse
+        public string Mail
         {
-            get { return _adresse; }
-            set { _adresse = value; NotifyPropertyChanged("Adresse"); }
+            get { return _mail; }
+            set { _mail = value; NotifyPropertyChanged("Mail"); }
         }
 
         
@@ -81,7 +83,26 @@ namespace Metier {
             }
         }
 
-        public Utilisateur(string username, string password, string type, string nom, string prenom, string age, string imagepath, string adresse)
+
+        private Location _position;
+
+
+        public Location Position
+        {
+            get
+            {
+                return _position;
+            }
+
+            set
+            {
+                _position = value;
+                NotifyPropertyChanged("Position");
+            }
+        }
+
+
+        public Utilisateur(string username, string password, string type, string nom, string prenom, string age, string imagepath, string mail, Location location)
         {
             UserName = username;
             Password = password;
@@ -90,7 +111,9 @@ namespace Metier {
             Prenom = prenom;
             Age = age;
             ImagePath = imagepath;
-            Adresse = adresse;
+            Mail = mail;
+            Position = location;
+            
         }
 
         public Utilisateur() { }
@@ -105,6 +128,9 @@ namespace Metier {
 
             return UserName.Trim().Equals(u.UserName) && Password.Trim().Equals(u.Password);
         }
+
+
+        
     }
 
 }

@@ -105,7 +105,21 @@ namespace Metier
             }
         }
 
-        public Voiture(string marque, string modele, string type, int puissance, string description, string imagepath)
+        private string _soundPath;
+        public string SoundPath
+        {
+            get
+            {
+                return _soundPath;
+            }
+
+            set
+            {
+                _soundPath = value;
+                NotifyPropertyChanged("SoundPath");
+            }
+        }
+        public Voiture(string marque, string modele, string type, int puissance, string description, string imagepath, string soundpath)
         {
             Marque = marque;
             Modele = modele;
@@ -113,7 +127,7 @@ namespace Metier
             Description = description;
             Type = type;
             ImagePath = imagepath;
-
+            SoundPath = soundpath;
         }
 
         public Voiture()

@@ -39,6 +39,8 @@ namespace MasterDetail.ViewModels
         public DelegateCommand FinCommand { get; set; }
         public DelegateCommand OpenCommand { get; set; }
 
+        public DelegateCommand SoundCommand { get; set; }
+
         #endregion
 
         #region Constructeur
@@ -49,12 +51,13 @@ namespace MasterDetail.ViewModels
             ClickOnFin = false;
             FinCommand = new DelegateCommand(OnFinCommand, CanExecuteFin);
             OpenCommand = new DelegateCommand(OnOpenCommand, CanOpenCommand);
+            SoundCommand = new DelegateCommand(OnSoundCommand, CanSoundCommand);
 
-            NewVoiture = new Voiture("", "", "Familiale", 0, "", "C:\\Users\\ozcan\\Documents\\COURS\\C# .NET  WPF XAML\\TP IHM\\MasterDetail\\Images\\image.png");
+            NewVoiture = new Voiture("", "", "Familiale", 0, "", "Images/image.png","");
 
         }
 
-        #endregion      
+        #endregion
 
         #region Evenements
 
@@ -88,6 +91,23 @@ namespace MasterDetail.ViewModels
             ButtonPressedEvent.GetEvent().OnButtonPressedHandler(EventArgs.Empty);
         }
         private bool CanExecuteFin(object obj)
+        {
+            return true;
+        }
+
+        #endregion
+
+        #region Sound
+
+        private void OnSoundCommand(object obj)
+        {
+            OpenFileDialog openFileDialog = new OpenFileDialog();
+            openFileDialog.Filter = "WMA files (*.wma,*.mp3)|*.wma;*.mp3|All files (*.*)|*.*";
+            if (openFileDialog.ShowDialog() == true)
+                NewVoiture.SoundPath=openFileDialog.FileName;
+
+        }
+        private bool CanSoundCommand(object obj)
         {
             return true;
         }

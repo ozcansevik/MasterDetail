@@ -1,10 +1,10 @@
 ﻿<Window  x:Class="MasterDetail.MainWindow"
          xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
          xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-         Title="Liste de Voitures" Height="600" Width="850" WindowStartupLocation="CenterScreen" 
+         Title="Liste de Voitures" Height="650" Width="850" WindowStartupLocation="CenterScreen" 
           Style="{StaticResource WindowStyle}">
 
-    <Grid>
+    <Grid Style="{StaticResource Grid}">
         <Grid.RowDefinitions>
             <RowDefinition Height="auto"/>
             <RowDefinition Height="8*" />
@@ -15,8 +15,6 @@
             <ColumnDefinition />
         </Grid.ColumnDefinitions>
 
-       
-        
         <Label Style="{StaticResource LabelPrincipal}" Grid.ColumnSpan="2" Grid.Row="0" Content="Liste de Voitures" />
         <ListView Name="List"  ItemsSource="{Binding ListeVoiture}" SelectedItem="{Binding SelectedVoiture}" Grid.Column="0" Grid.Row="1" ScrollViewer.CanContentScroll="True" ScrollViewer.VerticalScrollBarVisibility="Visible">
             <ListView.ItemTemplate>
@@ -24,13 +22,15 @@
                     <StackPanel Style="{StaticResource StackPanelList}" >
                         <TextBlock Style="{StaticResource TextBlockOfList}" Text="{Binding Marque}" />
                         <TextBlock Style="{StaticResource TextBlockOfList}" Text="{Binding Modele}" />
+                       
                     </StackPanel>
                 </DataTemplate>
             </ListView.ItemTemplate>
         </ListView>
-        <Grid Grid.Column="1" Grid.Row="1" >
+        <Grid Style="{StaticResource Grid}" Margin="0,0,10,0" Grid.Column="1" Grid.Row="1" >
             <Grid.RowDefinitions>
                 <RowDefinition Height="Auto"/>
+                <RowDefinition Height="Auto" />
                 <RowDefinition Height="Auto" />
                 <RowDefinition Height="Auto" />
                 <RowDefinition Height="Auto" />
@@ -56,7 +56,10 @@
                 <Label  Content="Puissance : " />
                 <TextBox IsReadOnly="{Binding IsReadOnly}" Text="{Binding SelectedVoiture.Puissance}" Name="Puissance" />
             </StackPanel>
-            <StackPanel Style="{StaticResource StackPanelDescription}" Grid.Row="4" Grid.ColumnSpan="2"  >
+            <StackPanel Style="{StaticResource StackPanelContent}" HorizontalAlignment="Left" Width="200" Height="50" Grid.Row="4"  >
+                <Button Style="{StaticResource Buttons}"  Width="150" Height="auto" Content="Ouvrir un son" Command="{Binding SoundCommand}" IsEnabled="{Binding IsEnabledAfterEdit}" Visibility="{Binding IsVendeur}" />
+            </StackPanel>
+            <StackPanel Style="{StaticResource StackPanelDescription}" Grid.Row="5" Grid.ColumnSpan="2"  >
                 <Label Width="75" Content="Description: " />
                 <TextBox Style="{StaticResource TextBoxDescription}" IsReadOnly="{Binding IsReadOnly}" Text="{Binding SelectedVoiture.Description}" x:Name="Description" />
             </StackPanel>
@@ -123,7 +126,7 @@
                 </Button.Template>
             </Button>
         </StackPanel>
-                    
+        <MediaElement Visibility="Hidden" Name="myMediaElement" LoadedBehavior="{Binding AudioControl}" Source="{Binding SelectedVoiture.SoundPath}" />
     </Grid>
     
 </Window>

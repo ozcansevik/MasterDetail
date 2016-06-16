@@ -7,8 +7,14 @@
     <Nom>Bahaki</Nom>
     <Prenom>Eissam</Prenom>
     <Age>20</Age>
-    <Adresse>eissam@live.fr</Adresse>
+    <Mail>eissam@live.fr</Mail>
     <ImagePath>C:\Users\ozcan\Documents\COURS\C# .NET  WPF XAML\MasterDetail\MasterDetail\Images\Icons\1.png</ImagePath>
+    <Position>
+      <Latitude>48.856614</Latitude>
+      <Longitude>2.352222</Longitude>
+      <Altitude>0</Altitude>
+      <AltitudeReference>Ground</AltitudeReference>
+    </Position>
   </Utilisateur>
   <Utilisateur>
     <UserName>o</UserName>
@@ -17,7 +23,13 @@
     <Nom>Sevik</Nom>
     <Prenom>Ozcan</Prenom>
     <Age>18</Age>
-    <Adresse>ozcan@live.fr</Adresse>
+    <Mail>ozcan@live.fr</Mail>
     <ImagePath>C:\Users\ozcan\Documents\COURS\C# .NET  WPF XAML\MasterDetail\MasterDetail\Images\Icons\9.png</ImagePath>
+    <Position>
+      <Latitude>45.777222</Latitude>
+      <Longitude>3.087025</Longitude>
+      <Altitude>0</Altitude>
+      <AltitudeReference>Ground</AltitudeReference>
+    </Position>
   </Utilisateur>
 </ArrayOfUtilisateur>

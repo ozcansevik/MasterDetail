@@ -14,15 +14,33 @@ using System.Xml;
 using System.Xml.Serialization;
 using System.IO;
 using System.Windows;
+using System.Windows.Controls;
 
 namespace MasterDetail.ViewModels
 {
 
     [Serializable]
-  
+
     public class MainMVVM : VMBase{
-        
-        
+
+        private MediaState _audioControl;
+
+        public MediaState AudioControl
+        {
+            get
+            {
+                return _audioControl;
+            }
+
+            set
+            {
+                _audioControl = value;
+                NotifyPropertyChanged("AudioControl");
+            }
+        }
+
+
+
         private Visibility _isVendeur;
 
         public Visibility IsVendeur
@@ -109,7 +127,11 @@ namespace MasterDetail.ViewModels
             set {
                 _selectedVoiture = value;
                 NotifyPropertyChanged("SelectedVoiture");
-                if (_selectedVoiture != null) IsEnabledButton = true;
+                if (_selectedVoiture != null)
+                {
+                    AudioControl = MediaState.Play;
+                    IsEnabledButton = true;
+                }
             }
         }
 
@@ -139,6 +161,7 @@ namespace MasterDetail.ViewModels
         public DelegateCommand LoadCommand { get; set; }
         public DelegateCommand InfoCommand { get; set; }
         public DelegateCommand QuitCommand { get; set; }
+        public DelegateCommand SoundCommand { get; set; }
 
         #endregion
 
@@ -163,18 +186,19 @@ namespace MasterDetail.ViewModels
             else
                 IsVendeur = Visibility.Hidden;
 
-            ListeVoiture.Add(new Voiture("Mercedes", "A45AMG", "Sport", int.Parse("380"), "Un monstre de puissance.", "Images/a45.jpg"));
-            ListeVoiture.Add(new Voiture("BMW", "M5", "Sport", int.Parse("550"), "Un bolide à tout épreuve.", "Images/m5.jpg"));
-            ListeVoiture.Add(new Voiture("Ford", "Mustang", "Sport", int.Parse("500"), "Attention à vos oreilles.Cette voiture va vous étonner par sa rapidité. Voiture américaine equipé d'un moteur v10.","Images/mustang.jpg"));
+            ListeVoiture.Add(new Voiture("Mercedes", "A45AMG", "Sport", int.Parse("380"), "Un monstre de puissance.", "Images/a45.jpg","Sounds/a45.wma"));
+            ListeVoiture.Add(new Voiture("BMW", "M5", "Sport", int.Parse("550"), "Un bolide à tout épreuve.", "Images/m5.jpg", "Sounds/m5.wma"));
+           /* ListeVoiture.Add(new Voiture("Ford", "Mustang", "Sport", int.Parse("500"), "Attention à vos oreilles.Cette voiture va vous étonner par sa rapidité. Voiture américaine equipé d'un moteur v10.","Images/mustang.jpg"));
             ListeVoiture.Add(new Voiture("Mercedes", "C63AMG", "Sport", int.Parse("750"), "Grosse berline sportive allemande.", "Images/c63.jpg"));
             ListeVoiture.Add(new Voiture("Citroen", "Saxo", "Berline", int.Parse("60"), "Voiture parfaite pour jeune pilote. Ideal pour les plans Tinder", "Images/saxo.jpg"));
             ListeVoiture.Add(new Voiture("Audi", "RS3", "Sport", int.Parse("367"), "Voiture pour les passionés de la conduite", "Images/rs3.jpg"));
-
+            */
             TextEdit = "Modifier";
             IsReadOnly = true;
             IsEnabledButton = false;
             IsEnabledAfterEdit = false;
-            
+            AudioControl = MediaState.Manual;
+
             AddCommand = new DelegateCommand(OnAddCommand, CanExecuteAdd);
             EditCommand = new DelegateCommand(OnEditCommand, CanEditCommand);
             DelCommand = new DelegateCommand(OnDelCommand, CanDelCommand);
@@ -183,6 +207,7 @@ namespace MasterDetail.ViewModels
             LoadCommand = new DelegateCommand(OnLoadCommand, CanLoadCommand);
             InfoCommand = new DelegateCommand(OnInfoCommand, CanInfoCommand);
             QuitCommand = new DelegateCommand(OnQuitCommand, CanQuitCommand);
+            SoundCommand = new DelegateCommand(OnSoundCommand, CanSoundCommand);
         }
 
         #endregion
@@ -192,6 +217,7 @@ namespace MasterDetail.ViewModels
         #region Info
         private void OnInfoCommand(object obj)
         {
+            AudioControl = MediaState.Stop;
             ButtonPressedEvent.GetEvent().Handler += CloseInfoView;
 
             InfoVue = new InfoView(MainWindow.LoginVM);
@@ -230,6 +256,7 @@ namespace MasterDetail.ViewModels
         {
             MainWindow.LoginVM.Login.Show();
             MainWindow.Hide();
+            AudioControl = MediaState.Stop;
         }
         private bool CanQuitCommand(object obj)
         {
@@ -241,6 +268,7 @@ namespace MasterDetail.ViewModels
         #region Add
         private void OnAddCommand(object o)
         {
+            AudioControl = MediaState.Stop;
             ButtonPressedEvent.GetEvent().Handler += CloseAddView;
 
             Add = new AddView();
@@ -287,6 +315,7 @@ namespace MasterDetail.ViewModels
         #region Del
         private void OnDelCommand(object o)
         {
+
             ListeVoiture.Remove(SelectedVoiture);
         }
 
@@ -307,7 +336,6 @@ namespace MasterDetail.ViewModels
               "Portable Network Graphic (*.png)|*.png";
             if (op.ShowDialog() == true)
             {
-                //  SelectedVoiture.Image = new BitmapImage(new Uri(op.FileName));
                 SelectedVoiture.ImagePath = op.FileName;
             }
         }
@@ -364,6 +392,23 @@ namespace MasterDetail.ViewModels
         }
 
         private bool CanLoadCommand(Object o)
+        {
+            return true;
+        }
+
+        #endregion
+
+        #region Sound
+
+        private void OnSoundCommand(object obj)
+        {
+            OpenFileDialog openFileDialog = new OpenFileDialog();
+            openFileDialog.Filter = "WMA files (*.wma,*.mp3)|*.wma;*.mp3|All files (*.*)|*.*";
+            if (openFileDialog.ShowDialog() == true)
+                SelectedVoiture.SoundPath = openFileDialog.FileName;
+
+        }
+        private bool CanSoundCommand(object obj)
         {
             return true;
         }

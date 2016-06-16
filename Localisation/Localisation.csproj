@@ -1,30 +1,29 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
-<Project ToolsVersion="12.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+<Project ToolsVersion="14.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProjectGuid>{F184A191-1A69-472C-8247-C2818A3F6D1C}</ProjectGuid>
+    <ProjectGuid>{22DE07D0-DE77-485E-8563-CCE64165CA57}</ProjectGuid>
     <OutputType>WinExe</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>MasterDetail</RootNamespace>
-    <AssemblyName>MasterDetail</AssemblyName>
+    <RootNamespace>Localisation</RootNamespace>
+    <AssemblyName>Localisation</AssemblyName>
     <TargetFrameworkVersion>v4.5.2</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <ProjectTypeGuids>{60dc8134-eba5-43b8-bcc9-bb4bc16c2548};{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}</ProjectTypeGuids>
     <WarningLevel>4</WarningLevel>
-    <TargetFrameworkProfile />
+    <AutoGenerateBindingRedirects>true</AutoGenerateBindingRedirects>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <PlatformTarget>AnyCPU</PlatformTarget>
     <DebugSymbols>true</DebugSymbols>
     <DebugType>full</DebugType>
     <Optimize>false</Optimize>
-    <OutputPath>.\</OutputPath>
+    <OutputPath>bin\Debug\</OutputPath>
     <DefineConstants>DEBUG;TRACE</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
-    <Prefer32Bit>false</Prefer32Bit>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
     <PlatformTarget>AnyCPU</PlatformTarget>
@@ -34,7 +33,6 @@
     <DefineConstants>TRACE</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
-    <Prefer32Bit>false</Prefer32Bit>
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="Microsoft.Maps.MapControl.WPF">
@@ -42,12 +40,12 @@
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.Data" />
-    <Reference Include="System.Device" />
     <Reference Include="System.Xml" />
     <Reference Include="Microsoft.CSharp" />
     <Reference Include="System.Core" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="System.Net.Http" />
     <Reference Include="System.Xaml">
       <RequiredTargetFramework>4.0</RequiredTargetFramework>
     </Reference>
@@ -60,52 +58,18 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
-    <Compile Include="Events\ButtonPressedEvent.cs" />
-    <Compile Include="InfoView.xaml.cs">
-      <DependentUpon>InfoView.xaml</DependentUpon>
-    </Compile>
-    <Compile Include="LoginWindow.xaml.cs">
-      <DependentUpon>LoginWindow.xaml</DependentUpon>
-    </Compile>
-    <Compile Include="SignupWindow.xaml.cs">
-      <DependentUpon>SignupWindow.xaml</DependentUpon>
-    </Compile>
-    <Compile Include="ViewModels\AddMVVM.cs" />
-    <Compile Include="ViewModels\InfoMVVM.cs" />
-    <Compile Include="ViewModels\LoginMVVM.cs" />
-    <Compile Include="ViewModels\MainMVVM.cs" />
-    <Compile Include="ViewModels\SignupMVVM.cs" />
-    <Page Include="AddView.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
-    <Page Include="InfoView.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
-    <Page Include="LoginWindow.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
-    <Page Include="MainWindow.xaml">
+    <Page Include="LocalisationWindow.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
-    <Compile Include="AddView.xaml.cs">
-      <DependentUpon>AddView.xaml</DependentUpon>
-    </Compile>
     <Compile Include="App.xaml.cs">
       <DependentUpon>App.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
-    <Compile Include="MainWindow.xaml.cs">
-      <DependentUpon>MainWindow.xaml</DependentUpon>
+    <Compile Include="LocalisationWindow.xaml.cs">
+      <DependentUpon>LocalisationWindow.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
-    <Page Include="SignupWindow.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Properties\AssemblyInfo.cs">
@@ -133,57 +97,6 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
-  </ItemGroup>
-  <ItemGroup>
-    <ProjectReference Include="..\Library\Library.csproj">
-      <Project>{86f048f0-3546-4757-927a-1de6d9568a95}</Project>
-      <Name>Library</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\Metier\Metier.csproj">
-      <Project>{462615b2-ff05-43a3-a10f-7278ac40aabc}</Project>
-      <Name>Metier</Name>
-    </ProjectReference>
-  </ItemGroup>
-  <ItemGroup>
-    <Content Include="Sounds\a45.wma" />
-    <Content Include="Sounds\m5.wma" />
-    <Content Include="Sounds\start.wma" />
-  </ItemGroup>
-  <ItemGroup>
-    <Resource Include="Images\exit.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <Resource Include="Images\delete.png" />
-    <Resource Include="Images\edit.png" />
-    <Resource Include="Images\image.png" />
-    <Resource Include="Images\info.png" />
-    <Resource Include="Images\load.png" />
-    <Resource Include="Images\m5.jpg" />
-    <Resource Include="Images\mustang.jpg" />
-    <Resource Include="Images\rs3.jpg" />
-    <Resource Include="Images\save.png" />
-    <Resource Include="Images\saxo.jpg" />
-  </ItemGroup>
-  <ItemGroup>
-    <Resource Include="Images\a45.jpg" />
-    <Resource Include="Images\add.png" />
-    <Resource Include="Images\c63.jpg" />
-  </ItemGroup>
-  <ItemGroup>
-    <Resource Include="Images\Icons\1.png" />
-    <Resource Include="Images\Icons\2.png" />
-    <Resource Include="Images\Icons\3.png" />
-    <Resource Include="Images\Icons\4.png" />
-    <Resource Include="Images\Icons\5.png" />
-    <Resource Include="Images\Icons\6.png" />
-    <Resource Include="Images\Icons\7.png" />
-    <Resource Include="Images\Icons\8.png" />
-    <Resource Include="Images\Icons\9.png" />
-    <Resource Include="Images\Icons\user.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <Resource Include="Xml\listeUtilisateur.xml" />
-    <Resource Include="Xml\listevoiture.xml" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

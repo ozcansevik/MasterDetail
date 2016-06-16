@@ -9,9 +9,28 @@ using System.Windows;
 using MasterDetail.Events;
 using System.Xml.Serialization;
 using System.IO;
+using System.Device.Location;
+using Microsoft.Maps.MapControl.WPF;
+using System.Windows.Controls;
 
 namespace MasterDetail.ViewModels {
     public class LoginMVVM : VMBase {
+
+        private MediaState _audioControl;
+
+        public MediaState AudioControl
+        {
+            get
+            {
+                return _audioControl;
+            }
+
+            set
+            {
+                _audioControl = value;
+                NotifyPropertyChanged("AudioControl");
+            }
+        }
 
         #region View
         public LoginWindow Login { get; set; }
@@ -43,7 +62,7 @@ namespace MasterDetail.ViewModels {
         {
             Login = loginWindow;
 
-            XmlSerializer xs = new XmlSerializer(typeof(List<Utilisateur>));
+           XmlSerializer xs = new XmlSerializer(typeof(List<Utilisateur>));
 
             StreamReader rd = new StreamReader("Xml/listeUtilisateur.xml");
 
@@ -51,13 +70,16 @@ namespace MasterDetail.ViewModels {
 
             /*ListUtilisateur = new List<Utilisateur>();
 
-            ListUtilisateur.Add(new Utilisateur("e", "e", "Vendeur", "Bahaki", "Eissam", "20", "Images/image.png", "eissam@live.fr"));
-            ListUtilisateur.Add(new Utilisateur("o", "o", "Client", "Sevik", "Ozcan", "18", "Images/image.png", "ozcan@live.fr"));*/
+            ListUtilisateur.Add(new Utilisateur("e", "e", "Vendeur", "Bahaki", "Eissam", "20", "Images/image.png", "eissam@live.fr",new Location(48.856614,2.352222)));
+            ListUtilisateur.Add(new Utilisateur("o", "o", "Client", "Sevik", "Ozcan", "18", "Images/image.png", "ozcan@live.fr",new Location(45.777222,3.087025)));
+            */
+
+            AudioControl = MediaState.Manual;
 
             LoginCommand = new DelegateCommand(OnLoginCommand, CanExecuteLogin);
             SignupCommand = new DelegateCommand(OnSignupCommand, CanExecuteSignup);
 
-            Utilisateur = new Utilisateur("", "", "", "", "", "", "Images/image.png","");
+            Utilisateur = new Utilisateur("", "", "", "", "", "", "Images/image.png","", new Location(46.227638,2.213749));
         }
 
         #endregion
@@ -67,12 +89,14 @@ namespace MasterDetail.ViewModels {
         #region Signup
         private void OnSignupCommand(object obj)
         {
-            Signup = new SignupWindow();
+            Signup = new SignupWindow(this);
             ButtonPressedEvent.GetEvent().Handler += CloseSignupWindow;
             Signup.ShowDialog();
 
             if (Signup.SignupVM.ClickOnSignup)
+            {
                 ListUtilisateur.Add(Signup.SignupVM.NewUtilisateur);
+            }
         }
 
         private void CloseSignupWindow(object sender, EventArgs e)
@@ -91,6 +115,7 @@ namespace MasterDetail.ViewModels {
         #region Login
         private void OnLoginCommand(object o)
         {
+            AudioControl = MediaState.Play;
 
             foreach (Utilisateur u in ListUtilisateur)
             {
@@ -101,14 +126,15 @@ namespace MasterDetail.ViewModels {
                     MainWindow Mainwindow = new MainWindow(this);
                     Login.Hide();
                     Mainwindow.ShowDialog();
-                    
-                   Utilisateur = new Utilisateur("", "", "", "", "", "", "Images/image.png", "");
 
+                    Utilisateur = new Utilisateur("", "", "", "", "", "", "Images/image.png","", new Location(46.227638,2.213749));
+                    AudioControl = MediaState.Stop;
                     return;
                 }
             }
             MessageBox.Show("Utilisateur Incorrect");
-            Utilisateur = new Utilisateur("", "", "","","","", "Images/image.png","");
+            Utilisateur = new Utilisateur("", "", "","","","", "Images/image.png","", new Location(46.227638,2.213749));
+            
         }
 
         private bool CanExecuteLogin(object o)
@@ -119,5 +145,7 @@ namespace MasterDetail.ViewModels {
         #endregion
 
         #endregion
+
+      
     }
 }

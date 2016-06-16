@@ -11,9 +11,14 @@
             <Setter Property="HorizontalAlignment" Value="Center" />
             <Setter Property="VerticalAlignment" Value="Center" />
         </Style>
+        <Style BasedOn="{StaticResource StackPanelDescription}"
+        TargetType="StackPanel"
+        x:Key="StackPanelDecription">
+            <Setter Property="VerticalAlignment" Value="Bottom" />
+        </Style>
     </Window.Resources>
-    
-    <Grid >
+
+    <Grid Style="{StaticResource Grid}" >
         <Grid.RowDefinitions>
             <RowDefinition Height="auto"/>
             <RowDefinition Height="8*" />
@@ -55,19 +60,20 @@
             <Label  Content="Puissance : " />
             <TextBox  Text="{Binding NewVoiture.Puissance}" Name="Puissance" MinWidth="100"/>
         </StackPanel>
-        <StackPanel Style="{StaticResource StackPanelDescription}" Grid.Row="4" Grid.ColumnSpan="2" HorizontalAlignment="Center" VerticalAlignment="Center">
+        <StackPanel Style="{StaticResource StackPanelDescription}" Grid.Row="4" Grid.ColumnSpan="2" >
             <Label Width="75" Content="Description: " />
             <TextBox Style="{StaticResource TextBoxDescription}" Text="{Binding NewVoiture.Description}" Name="Description" />
-        </StackPanel>
+                <Button Style="{StaticResource Buttons}" Margin="25"  Width="150" Height="auto" Content="Ouvrir un son" Command="{Binding SoundCommand}" />
+            </StackPanel>
             <StackPanel Style="{StaticResource StackPanelImage}" Grid.Column="1" Grid.RowSpan="4" >
                 <Border BorderBrush="Black" BorderThickness="2">
-                    <Image Source="{Binding NewVoiture.Image}" Width="250" Height="250" />
+                    <Image Source="{Binding NewVoiture.ImagePath}" Width="250" Height="250" />
                  </Border>
-                <Button Style="{StaticResource MainButtons}" Width="auto" Height="auto" Name="AjoutImage" Content="Ouvrir une image" Command="{Binding OpenCommand}"/>
+                <Button Style="{StaticResource Buttons}" Width="auto" Height="auto" Name="AjoutImage" Content="Ouvrir une image" Command="{Binding OpenCommand}"/>
          </StackPanel>
         </Grid>
         <StackPanel Style="{StaticResource StackPanelButton}" Grid.ColumnSpan="1" Grid.Row="2" >
-            <Button Style="{StaticResource MainButtons}" Name="Terminer" Width="80" Height="80" Content="Terminer" Command="{Binding  FinCommand}"  />
+            <Button Style="{StaticResource Buttons}" Name="Terminer" Width="80" Height="80" Content="Terminer" Command="{Binding  FinCommand}"  />
         </StackPanel>
     </Grid>
 </Window>

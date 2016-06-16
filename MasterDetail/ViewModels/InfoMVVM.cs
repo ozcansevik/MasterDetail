@@ -11,6 +11,7 @@ using Microsoft.Win32;
 using System.Xml.Serialization;
 using System.IO;
 using System.Windows;
+using System.Device.Location;
 
 namespace MasterDetail.ViewModels {
     public class InfoMVVM :VMBase{

@@ -28,7 +28,7 @@
         </Style>
     </Window.Resources>
 
-    <Grid >
+    <Grid Style="{StaticResource Grid}">
         <Grid.RowDefinitions>
             <RowDefinition Height="3*"/>
             <RowDefinition Height="1*" />
@@ -55,5 +55,7 @@
                 </Image>
             </Border>
         </StackPanel>
+        <MediaElement Visibility="Hidden" Name="myMediaElement" LoadedBehavior="{Binding AudioControl}" Source="Sounds/start.wma" />
     </Grid>
+    
 </Window>

@@ -12,34 +12,15 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
-using MasterDetail.ViewModels;
-using Metier;
-using MasterDetail.Events;
 
-namespace MasterDetail
-{
+namespace Localisation {
     /// <summary>
     /// Logique d'interaction pour MainWindow.xaml
     /// </summary>
-    /// 
-   
-        
-    public partial class MainWindow : Window
-    {
-
-        public MainMVVM VoitureViewModel { get; set; }
-        public LoginMVVM LoginVM { get; set; }
-
-        public MainWindow(LoginMVVM loginVM)
+    public partial class LocalisationWindow : Window {
+        public LocalisationWindow()
         {
             InitializeComponent();
-
-            LoginVM = loginVM;
-
-            VoitureViewModel = new MainMVVM(this);
-            DataContext = VoitureViewModel;
-
         }
-
     }
 }

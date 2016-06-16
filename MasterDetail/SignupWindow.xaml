@@ -5,12 +5,21 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:MasterDetail"
         mc:Ignorable="d"
-        Title="SignupWindow" Height="600" Width="600"  Style="{StaticResource WindowStyle}">
+         xmlns:m="clr-namespace:Microsoft.Maps.MapControl.WPF;assembly=Microsoft.Maps.MapControl.WPF"
+        Title="SignupWindow" Height="730" Width="600"  Style="{StaticResource WindowStyle}" WindowStartupLocation="CenterScreen">
     
     <Window.Resources>
         <Style TargetType="StackPanel">
             <Setter Property="Orientation" Value="Horizontal"/>
             <Setter Property="HorizontalAlignment" Value="Center"/>
+            <Setter Property="Margin" Value="10"/>
+        </Style>
+        <Style x:Key="StackPanelImage" BasedOn="{StaticResource StackPanelImage}"
+        TargetType="StackPanel">
+            <Setter Property="Height" Value="150" />
+            <Setter Property="Width" Value="200" />
+            <Setter Property="Margin" Value="20" />
+            <Setter Property="HorizontalAlignment" Value="Left"/>
         </Style>
         <Style x:Key="L1" TargetType="Label">
             <Setter Property="Width" Value="120"/>
@@ -19,7 +28,8 @@
             <Setter Property="MinWidth" Value="100"/>
         </Style>
     </Window.Resources>
-    <Grid>
+    
+    <Grid Style="{StaticResource Grid}">
         <Grid.RowDefinitions>
             <RowDefinition Height="auto"/>
             <RowDefinition Height="auto" />
@@ -34,40 +44,49 @@
         </Grid.RowDefinitions>
 
         <Label Style="{StaticResource LabelPrincipal}" Content="Inscription"  />
-        <StackPanel Style="{StaticResource StackPanelImage}" Grid.Row="1"  Width="120" Height="85" >
-            <Border BorderBrush="Black" BorderThickness="2" Width="60" Height="60" >
-                <Image Source="{Binding NewUtilisateur.ImagePath}" Width="60" Height="60" />
+        <StackPanel Style="{StaticResource StackPanelImage}" Grid.Row="1"   >
+            <Border BorderBrush="Black" BorderThickness="2" Width="100" Height="100" >
+                <Image Source="{Binding NewUtilisateur.ImagePath}" Width="100" Height="100" />
             </Border>
-            <Button Width="auto" Height="auto" Name="AjoutImage" Content="Ouvrir une image" Command="{Binding OpenSignupCommand}"/>
+            <Button Style="{StaticResource Buttons}" Width="auto" Height="auto" Name="AjoutImage" Content="Ouvrir une image" Command="{Binding OpenCommand}"/>
         </StackPanel>
-        <StackPanel Margin="0,30,0,0" Grid.Row="2" >
+        <StackPanel Orientation="Vertical" VerticalAlignment="Center" HorizontalAlignment="Right" Grid.Row="1" MinWidth="300" MinHeight="200">
+            <Grid Margin="10">
+                <m:Map   MinWidth="300" MinHeight="200"/>
+                <m:Map x:Name="myMap" CredentialsProvider="INSERT_YOUR_BING_MAPS_KEY" 
+                         Center="46.227638,2.213749" ZoomLevel="4" MouseDoubleClick="MapWithPushpins_MouseDoubleClick" />
+                
+            </Grid>
+            <TextBlock HorizontalAlignment="Center" VerticalAlignment="Bottom" Text="Double-Clique pour inserer votre position" Background="Transparent"></TextBlock>
+        </StackPanel>
+        <StackPanel Margin="10,30,10,10" Grid.Row="2" >
             <Label Style="{StaticResource L1}" Content="Nom d'utilisateur :" />
             <TextBox Text="{Binding NewUtilisateur.UserName}" />
         </StackPanel>
-        <StackPanel Margin="10"  Grid.Row="3" >
+        <StackPanel  Grid.Row="3" >
             <Label Style="{StaticResource L1}" Content="Mot de passse :"/>
             <TextBox Text="{Binding NewUtilisateur.Password}" />
         </StackPanel>
-        <StackPanel Margin="10"  Grid.Row="4" >
+        <StackPanel  Grid.Row="4" >
             <Label Style="{StaticResource L1}" Content="Type d'utilisateur :"/>
             <ComboBox  MinWidth="100" ItemsSource="{Binding ListTypeUtilisateur}" SelectedItem="{Binding NewUtilisateur.Type}" />
         </StackPanel>
-        <StackPanel Margin="10"  Grid.Row="5" >
+        <StackPanel Grid.Row="5" >
             <Label Style="{StaticResource L1}" Content="Nom :"/>
             <TextBox Text="{Binding NewUtilisateur.Nom}" />
         </StackPanel>
-        <StackPanel Margin="10"  Grid.Row="6" >
+        <StackPanel  Grid.Row="6" >
             <Label Style="{StaticResource L1}" Content="Prenom :"/>
             <TextBox Text="{Binding NewUtilisateur.Prenom}" />
         </StackPanel>
-        <StackPanel Margin="10"  Grid.Row="7" >
+        <StackPanel Grid.Row="7" >
             <Label Style="{StaticResource L1}" Content="Age :"/>
             <TextBox Text="{Binding NewUtilisateur.Age}" />
         </StackPanel>
-        <StackPanel Margin="10"  Grid.Row="8" >
-            <Label Style="{StaticResource L1}" Content="Adresse:"/>
-            <TextBox Text="{Binding NewUtilisateur.Adresse}" />
+        <StackPanel Grid.Row="8" >
+            <Label Style="{StaticResource L1}" Content="Mail :"/>
+            <TextBox Text="{Binding NewUtilisateur.Mail}" />
         </StackPanel>
-        <Button Style="{StaticResource MainButtons}"  Width="80" Grid.Row="9" Content="S'inscrire" Command="{Binding SignupCommand}"></Button>
+        <Button Style="{StaticResource Buttons}"  Width="80" Grid.Row="9" Content="S'inscrire" Command="{Binding SignupCommand}"></Button>
     </Grid>
 </Window>
