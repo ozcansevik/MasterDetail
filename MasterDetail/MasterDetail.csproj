@@ -70,6 +70,7 @@
     <Compile Include="SignupWindow.xaml.cs">
       <DependentUpon>SignupWindow.xaml</DependentUpon>
     </Compile>
+    <Compile Include="EmptyRule.cs" />
     <Compile Include="ViewModels\AddMVVM.cs" />
     <Compile Include="ViewModels\InfoMVVM.cs" />
     <Compile Include="ViewModels\LoginMVVM.cs" />

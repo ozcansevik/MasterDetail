@@ -67,9 +67,9 @@
 
                     </Grid>
                 </StackPanel>
-                <StackPanel Margin="0,30,0,0" Style="{StaticResource StackPanel}" Grid.Row="2" >
+                <StackPanel Margin="10,30,10,10" Style="{StaticResource StackPanel}" Grid.Row="2" >
                     <Label Content="Nom d'utilisateur : "/>
-                    <TextBox Text="{Binding LoginVM.Utilisateur.UserName}"/>
+                    <TextBox IsReadOnly="True" Text="{Binding LoginVM.Utilisateur.UserName}"/>
                 </StackPanel>
                 <StackPanel Style="{StaticResource StackPanel}" Grid.Row="3">
                     <Label Content="Mot de passe : " />

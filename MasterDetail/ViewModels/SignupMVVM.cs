@@ -46,7 +46,7 @@ namespace MasterDetail.ViewModels {
             SignupCommand = new DelegateCommand(OnSignupCommand, CanExecuteSignup);
             OpenCommand = new DelegateCommand(OnOpenCommand, CanExecuteOpen);
 
-            NewUtilisateur = new Utilisateur("", "", "", "", "", "", "Images/image.png","", new Location(0,0));
+            NewUtilisateur = new Utilisateur(null, "", "", "", "", "", "Images/image.png","", new Location(0,0));
         }
 
         #endregion

@@ -14,6 +14,7 @@ using System.Windows.Shapes;
 using MasterDetail.ViewModels;
 using Microsoft.Maps.MapControl.WPF.Design;
 using Microsoft.Maps.MapControl.WPF;
+using MasterDetail;
 
 namespace MasterDetail {
     /// <summary>
