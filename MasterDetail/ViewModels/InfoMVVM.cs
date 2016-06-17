@@ -17,6 +17,7 @@ namespace MasterDetail.ViewModels {
     public class InfoMVVM :VMBase{
 
         public bool ClickOnFin { get; set; }
+        public bool ClickOnDel { get; set; }
 
         private string _texteItem;
         public string TexteItem
@@ -85,6 +86,7 @@ namespace MasterDetail.ViewModels {
             DelCommand = new DelegateCommand(OnDelCommand, CanExecuteDel);
 
             ClickOnFin = false;
+            ClickOnDel = false;
 
             if (LoginVM.Utilisateur.Type.Equals("Vendeur"))
             {
@@ -155,7 +157,9 @@ namespace MasterDetail.ViewModels {
         private void OnDelCommand(object obj)
         {
             ClickOnFin = true;
+            ClickOnDel = true;
             LoginVM.ListUtilisateur.Remove(LoginVM.Utilisateur);
+            
             MessageBox.Show("Utilisateur Supprimé");
             ButtonPressedEvent.GetEvent().OnButtonPressedHandler(EventArgs.Empty);
         }

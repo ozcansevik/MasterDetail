@@ -6,7 +6,8 @@
     <Type>Sport</Type>
     <Puissance>380</Puissance>
     <Description>Un monstre de puissance.</Description>
-    <ImagePath>C:\Users\ozcan\Documents\COURS\C# .NET  WPF XAML\TP IHM\MasterDetail\Images\a45.jpg</ImagePath>
+    <ImagePath>Images/a45.jpg</ImagePath>
+    <SoundPath>Sounds/a45.wma</SoundPath>
   </Voiture>
   <Voiture>
     <Marque>BMW</Marque>
@@ -14,7 +15,8 @@
     <Type>Sport</Type>
     <Puissance>550</Puissance>
     <Description>Un bolide à tout épreuve.</Description>
-    <ImagePath>C:\Users\ozcan\Documents\COURS\C# .NET  WPF XAML\TP IHM\MasterDetail\Images\m5.jpg</ImagePath>
+    <ImagePath>Images/m5.jpg</ImagePath>
+    <SoundPath>Sounds/m5.wma</SoundPath>
   </Voiture>
   <Voiture>
     <Marque>Ford</Marque>
@@ -22,7 +24,8 @@
     <Type>Sport</Type>
     <Puissance>500</Puissance>
     <Description>Attention à vos oreilles.Cette voiture va vous étonner par sa rapidité. Voiture américaine equipé d'un moteur v10.</Description>
-    <ImagePath>C:\Users\ozcan\Documents\COURS\C# .NET  WPF XAML\TP IHM\MasterDetail\Images\mustang.jpg</ImagePath>
+    <ImagePath>Images/mustang.jpg</ImagePath>
+    <SoundPath>Sounds/mustang.wma</SoundPath>
   </Voiture>
   <Voiture>
     <Marque>Mercedes</Marque>
@@ -30,7 +33,8 @@
     <Type>Sport</Type>
     <Puissance>750</Puissance>
     <Description>Grosse berline sportive allemande.</Description>
-    <ImagePath>C:\Users\ozcan\Documents\COURS\C# .NET  WPF XAML\TP IHM\MasterDetail\Images\c63.jpg</ImagePath>
+    <ImagePath>Images/c63.jpg</ImagePath>
+    <SoundPath>Sounds/c63.wma</SoundPath>
   </Voiture>
   <Voiture>
     <Marque>Citroen</Marque>
@@ -38,7 +42,8 @@
     <Type>Berline</Type>
     <Puissance>60</Puissance>
     <Description>Voiture parfaite pour jeune pilote. Ideal pour les plans Tinder</Description>
-    <ImagePath>C:\Users\ozcan\Documents\COURS\C# .NET  WPF XAML\TP IHM\MasterDetail\Images\saxo.jpg</ImagePath>
+    <ImagePath>Images/saxo.jpg</ImagePath>
+    <SoundPath>Sounds/saxo.wma</SoundPath>
   </Voiture>
   <Voiture>
     <Marque>Audi</Marque>
@@ -46,6 +51,7 @@
     <Type>Sport</Type>
     <Puissance>367</Puissance>
     <Description>Voiture pour les passionés de la conduite</Description>
-    <ImagePath>C:\Users\ozcan\Documents\COURS\C# .NET  WPF XAML\TP IHM\MasterDetail\Images\rs3.jpg</ImagePath>
+    <ImagePath>Images/rs3.jpg</ImagePath>
+    <SoundPath>Sounds/rs3.wma</SoundPath>
   </Voiture>
 </ArrayOfVoiture>

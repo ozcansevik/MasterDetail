@@ -188,11 +188,11 @@ namespace MasterDetail.ViewModels
 
             ListeVoiture.Add(new Voiture("Mercedes", "A45AMG", "Sport", int.Parse("380"), "Un monstre de puissance.", "Images/a45.jpg","Sounds/a45.wma"));
             ListeVoiture.Add(new Voiture("BMW", "M5", "Sport", int.Parse("550"), "Un bolide à tout épreuve.", "Images/m5.jpg", "Sounds/m5.wma"));
-           /* ListeVoiture.Add(new Voiture("Ford", "Mustang", "Sport", int.Parse("500"), "Attention à vos oreilles.Cette voiture va vous étonner par sa rapidité. Voiture américaine equipé d'un moteur v10.","Images/mustang.jpg"));
-            ListeVoiture.Add(new Voiture("Mercedes", "C63AMG", "Sport", int.Parse("750"), "Grosse berline sportive allemande.", "Images/c63.jpg"));
-            ListeVoiture.Add(new Voiture("Citroen", "Saxo", "Berline", int.Parse("60"), "Voiture parfaite pour jeune pilote. Ideal pour les plans Tinder", "Images/saxo.jpg"));
-            ListeVoiture.Add(new Voiture("Audi", "RS3", "Sport", int.Parse("367"), "Voiture pour les passionés de la conduite", "Images/rs3.jpg"));
-            */
+            ListeVoiture.Add(new Voiture("Ford", "Mustang", "Sport", int.Parse("500"), "Attention à vos oreilles.Cette voiture va vous étonner par sa rapidité. Voiture américaine equipé d'un moteur v10.","Images/mustang.jpg","Sounds/mustang.wma"));
+            ListeVoiture.Add(new Voiture("Mercedes", "C63AMG", "Sport", int.Parse("750"), "Grosse berline sportive allemande.", "Images/c63.jpg","Sounds/c63.wma"));
+            ListeVoiture.Add(new Voiture("Citroen", "Saxo", "Berline", int.Parse("60"), "Voiture parfaite pour jeune pilote. Ideal pour les plans Tinder", "Images/saxo.jpg", "Sounds/saxo.wma"));
+            ListeVoiture.Add(new Voiture("Audi", "RS3", "Sport", int.Parse("367"), "Voiture pour les passionés de la conduite", "Images/rs3.jpg","Sounds/rs3.wma"));
+
             TextEdit = "Modifier";
             IsReadOnly = true;
             IsEnabledButton = false;
@@ -233,6 +233,11 @@ namespace MasterDetail.ViewModels
 
                 xs.Serialize(wr, MainWindow.LoginVM.ListUtilisateur);
 
+                if (InfoVue.infoVM.ClickOnDel)
+                {
+                    MainWindow.Hide();
+                    MainWindow.LoginVM.Login.Show();
+                }
             }
         }
 

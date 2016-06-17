@@ -25,6 +25,10 @@
         <Style x:Key="L1" TargetType="Label">
             <Setter Property="Width" Value="120"/>
         </Style>
+        <Style x:Key="L2" TargetType="Label">
+            <Setter Property="Width" Value="120"/>
+            <Setter Property="Margin" Value="-70,0,0,0" />
+        </Style>
         <Style TargetType="TextBox">
             <Setter Property="MinWidth" Value="100"/>
         </Style>
@@ -60,56 +64,38 @@
             </Grid>
             <TextBlock HorizontalAlignment="Center" VerticalAlignment="Bottom" Text="Double-Clique pour inserer votre position" Background="Transparent"></TextBlock>
         </StackPanel>
+        <StackPanel Grid.Row="1" Height="20" Width="150" VerticalAlignment="Bottom" Margin="0,0,350,0">
+            <TextBlock Text="* : champs obligatoires" Background="Transparent" />
+        </StackPanel>
         <StackPanel Margin="10,30,10,10" Grid.Row="2" >
             <Label Style="{StaticResource L1}" Content="Nom d'utilisateur :" />
-            <TextBox>
-                <TextBox.Text>
-                    <Binding Path="NewUtilisateur.UserName" Mode="OneWayToSource">
-                        <Binding.ValidationRules>
-                            <local:EmptyRule/>
-                        </Binding.ValidationRules>
-                    </Binding>
-                </TextBox.Text>
-            </TextBox>
+            <TextBox Text="{Binding NewUtilisateur.UserName}" />
+            <Label Content="  *"/>
         </StackPanel>
         <StackPanel  Grid.Row="3" >
             <Label Style="{StaticResource L1}" Content="Mot de passse :"/>
-            <TextBox>
-                <TextBox.Text>
-                    <Binding Path="NewUtilisateur.Password"  Mode="OneWayToSource" >
-                        <Binding.ValidationRules>
-                            <local:EmptyRule/>
-                        </Binding.ValidationRules>
-                    </Binding>
-                    </TextBox.Text>
-            </TextBox>
+            <TextBox Text="{Binding NewUtilisateur.Password}" />
+            <Label Content="  *" />
         </StackPanel>
         <StackPanel  Grid.Row="4" >
             <Label Style="{StaticResource L1}" Content="Type d'utilisateur :"/>
-            <ComboBox MinWidth="100" ItemsSource="{Binding ListTypeUtilisateur}" SelectedItem="{Binding NewUtilisateur.Type}">
-                <ComboBox.Text>
-                    <Binding Path="NewUtilisateur.Type" Mode="OneWayToSource">
-                        <Binding.ValidationRules>
-                            <local:EmptyRule/>
-                        </Binding.ValidationRules>
-                    </Binding>
-                </ComboBox.Text>
-            </ComboBox>
+            <ComboBox MinWidth="100" ItemsSource="{Binding ListTypeUtilisateur}" SelectedItem="{Binding NewUtilisateur.Type}"/>
+            <Label Content="  *" />
         </StackPanel>
         <StackPanel Grid.Row="5" >
-            <Label Style="{StaticResource L1}" Content="Nom :"/>
+            <Label Style="{StaticResource L2}" Content="Nom :"/>
             <TextBox Text="{Binding NewUtilisateur.Nom}"/>
         </StackPanel>
         <StackPanel  Grid.Row="6" >
-            <Label Style="{StaticResource L1}" Content="Prenom :"/>
+            <Label Style="{StaticResource L2}" Content="Prenom :"/>
             <TextBox  Text="{Binding NewUtilisateur.Prenom}" />
         </StackPanel>
         <StackPanel Grid.Row="7" >
-            <Label Style="{StaticResource L1}" Content="Age :"/>
+            <Label Style="{StaticResource L2}" Content="Age :"/>
             <TextBox Text="{Binding NewUtilisateur.Age}" />
         </StackPanel>
         <StackPanel Grid.Row="8" >
-            <Label Style="{StaticResource L1}" Content="Mail :"/>
+            <Label Style="{StaticResource L2}" Content="Mail :"/>
             <TextBox Text="{Binding NewUtilisateur.Mail}" />
         </StackPanel>
         <Button Style="{StaticResource Buttons}"  Width="80" Grid.Row="9" Content="S'inscrire" Command="{Binding SignupCommand}" ></Button>

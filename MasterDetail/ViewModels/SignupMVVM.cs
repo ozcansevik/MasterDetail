@@ -94,24 +94,26 @@ namespace MasterDetail.ViewModels {
             var existingCount = Signup.Login.ListUtilisateur.Count(p =>
                 p.UserName == NewUtilisateur.UserName);
 
-            if (NewUtilisateur.UserName == String.Empty || NewUtilisateur.Password == String.Empty || NewUtilisateur.Type == String.Empty) {
+            if (NewUtilisateur.UserName == String.Empty || NewUtilisateur.Password == String.Empty || NewUtilisateur.Type == String.Empty)
+            {
 
                 MessageBox.Show("Veuillez remplir tous les champs requis");
-                return;
-            }
-
-            if (existingCount > 0)
-            {
-                MessageBox.Show("Nom d'utilisateur déja utilisé");
             }
 
             else
             {
-                MessageBox.Show("Inscription effectuée vous pouvez vous connectez");
-                ClickOnSignup = true;
-                ButtonPressedEvent.GetEvent().OnButtonPressedHandler(EventArgs.Empty);
-            }
+                if (existingCount > 0)
+                {
+                    MessageBox.Show("Nom d'utilisateur déja utilisé");
+                }
 
+                else
+                {
+                    MessageBox.Show("Inscription effectuée vous pouvez vous connectez");
+                    ClickOnSignup = true;
+                    ButtonPressedEvent.GetEvent().OnButtonPressedHandler(EventArgs.Empty);
+                }
+            }
                 
         }
         private bool CanExecuteSignup(object obj)
