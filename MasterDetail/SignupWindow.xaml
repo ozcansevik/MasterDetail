@@ -62,7 +62,7 @@
         </StackPanel>
         <StackPanel Margin="10,30,10,10" Grid.Row="2" >
             <Label Style="{StaticResource L1}" Content="Nom d'utilisateur :" />
-            <TextBox >
+            <TextBox>
                 <TextBox.Text>
                     <Binding Path="NewUtilisateur.UserName" Mode="OneWayToSource">
                         <Binding.ValidationRules>
@@ -74,19 +74,19 @@
         </StackPanel>
         <StackPanel  Grid.Row="3" >
             <Label Style="{StaticResource L1}" Content="Mot de passse :"/>
-            <TextBox >
+            <TextBox>
                 <TextBox.Text>
-                    <Binding Path="NewUtilisateur.Password" Mode="OneWayToSource">
+                    <Binding Path="NewUtilisateur.Password"  Mode="OneWayToSource" >
                         <Binding.ValidationRules>
                             <local:EmptyRule/>
                         </Binding.ValidationRules>
                     </Binding>
-                </TextBox.Text>
+                    </TextBox.Text>
             </TextBox>
         </StackPanel>
         <StackPanel  Grid.Row="4" >
             <Label Style="{StaticResource L1}" Content="Type d'utilisateur :"/>
-            <ComboBox  MinWidth="100" ItemsSource="{Binding ListTypeUtilisateur}" SelectedItem="{Binding NewUtilisateur.Type}">
+            <ComboBox MinWidth="100" ItemsSource="{Binding ListTypeUtilisateur}" SelectedItem="{Binding NewUtilisateur.Type}">
                 <ComboBox.Text>
                     <Binding Path="NewUtilisateur.Type" Mode="OneWayToSource">
                         <Binding.ValidationRules>
@@ -98,11 +98,11 @@
         </StackPanel>
         <StackPanel Grid.Row="5" >
             <Label Style="{StaticResource L1}" Content="Nom :"/>
-            <TextBox Text="{Binding NewUtilisateur.Nom}" />
+            <TextBox Text="{Binding NewUtilisateur.Nom}"/>
         </StackPanel>
         <StackPanel  Grid.Row="6" >
             <Label Style="{StaticResource L1}" Content="Prenom :"/>
-            <TextBox Text="{Binding NewUtilisateur.Prenom}" />
+            <TextBox  Text="{Binding NewUtilisateur.Prenom}" />
         </StackPanel>
         <StackPanel Grid.Row="7" >
             <Label Style="{StaticResource L1}" Content="Age :"/>
@@ -112,6 +112,6 @@
             <Label Style="{StaticResource L1}" Content="Mail :"/>
             <TextBox Text="{Binding NewUtilisateur.Mail}" />
         </StackPanel>
-        <Button Style="{StaticResource Buttons}"  Width="80" Grid.Row="9" Content="S'inscrire" Command="{Binding SignupCommand}"></Button>
+        <Button Style="{StaticResource Buttons}"  Width="80" Grid.Row="9" Content="S'inscrire" Command="{Binding SignupCommand}" ></Button>
     </Grid>
 </Window>

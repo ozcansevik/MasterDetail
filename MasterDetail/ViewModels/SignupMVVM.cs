@@ -13,9 +13,24 @@ using Microsoft.Win32;
 namespace MasterDetail.ViewModels {
     public class SignupMVVM : VMBase {
 
-        public SignupWindow Signup { get; set; }
-        public bool ClickOnSignup { get; set; }
+        private bool _isEnabled;
+        public bool IsEnabled
+        {
+            get
+            {
+                return _isEnabled;
+            }
 
+            set
+            {
+                _isEnabled = value;
+                NotifyPropertyChanged("IsEnabled");
+            }
+        }
+
+        public bool ClickOnSignup { get; set; }
+        public SignupWindow Signup { get; set; }
+        
         private Utilisateur _newUtilisateur;
 
         public Utilisateur NewUtilisateur
@@ -29,12 +44,29 @@ namespace MasterDetail.ViewModels {
             {
                 _newUtilisateur = value;
                 NotifyPropertyChanged("NewUtilisateur");
+
+                
             }
         }
 
         #region Delegates
-        public DelegateCommand SignupCommand { get; set; }
+        private DelegateCommand _signupCommand;
+        public DelegateCommand SignupCommand
+        {
+            get
+            {
+                return _signupCommand;
+            }
+
+            set
+            {
+                _signupCommand = value;
+                
+            }
+        }
         public DelegateCommand OpenCommand { get; set; }
+
+
         #endregion
 
         #region Constructeur
@@ -42,11 +74,12 @@ namespace MasterDetail.ViewModels {
         {
             Signup = signup;
             ClickOnSignup = false;
+            IsEnabled = false;
 
             SignupCommand = new DelegateCommand(OnSignupCommand, CanExecuteSignup);
             OpenCommand = new DelegateCommand(OnOpenCommand, CanExecuteOpen);
 
-            NewUtilisateur = new Utilisateur(null, "", "", "", "", "", "Images/image.png","", new Location(0,0));
+            NewUtilisateur = new Utilisateur("", "", "", "", "", "", "Images/image.png","", new Location(0,0));
         }
 
         #endregion
@@ -58,11 +91,19 @@ namespace MasterDetail.ViewModels {
         {
             NewUtilisateur.Position = Signup.PositionPin;
 
-            var existingCount = Signup.Login.ListUtilisateur.Count(p => 
+            var existingCount = Signup.Login.ListUtilisateur.Count(p =>
                 p.UserName == NewUtilisateur.UserName);
 
+            if (NewUtilisateur.UserName == String.Empty || NewUtilisateur.Password == String.Empty || NewUtilisateur.Type == String.Empty) {
+
+                MessageBox.Show("Veuillez remplir tous les champs requis");
+                return;
+            }
+
             if (existingCount > 0)
+            {
                 MessageBox.Show("Nom d'utilisateur déja utilisé");
+            }
 
             else
             {
