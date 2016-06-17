@@ -40,7 +40,6 @@ namespace MasterDetail.ViewModels
         }
 
 
-
         private Visibility _isVendeur;
 
         public Visibility IsVendeur
