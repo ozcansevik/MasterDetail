@@ -96,6 +96,11 @@ namespace MasterDetail.ViewModels {
             if (Signup.SignupVM.ClickOnSignup)
             {
                 ListUtilisateur.Add(Signup.SignupVM.NewUtilisateur);
+                XmlSerializer xs = new XmlSerializer(typeof(List<Utilisateur>));
+
+                StreamWriter wr = new StreamWriter("Xml/listeUtilisateur.xml");
+
+                xs.Serialize(wr, ListUtilisateur);
             }
         }
 

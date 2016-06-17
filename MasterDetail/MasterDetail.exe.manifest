@@ -61,7 +61,7 @@
           <dsig:Transform Algorithm="urn:schemas-microsoft-com:HashTransforms.Identity" />
         </dsig:Transforms>
         <dsig:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha256" />
-        <dsig:DigestValue>AsUCpTmZRYpFpK+6MbR+uf7YA+2J8tyyI8fWIqSUaGQ=</dsig:DigestValue>
+        <dsig:DigestValue>8eXpXbBDJBhwetMqxPssjfV64yy1NnmQQZcQ0izQJjg=</dsig:DigestValue>
       </hash>
     </dependentAssembly>
   </dependency>
@@ -104,7 +104,7 @@
         <dsig:Transform Algorithm="urn:schemas-microsoft-com:HashTransforms.Identity" />
       </dsig:Transforms>
       <dsig:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha256" />
-      <dsig:DigestValue>I0xllykY63Zi4580rs7Yt2sDpDOpbeYEg60cnmmX9rg=</dsig:DigestValue>
+      <dsig:DigestValue>DLwMswUtg1IHwD/uZqRBKTe4w0Gbab/r1cNp8+bOmW0=</dsig:DigestValue>
     </hash>
   </file>
   <file name="Sounds\a45.wma" size="570282">
