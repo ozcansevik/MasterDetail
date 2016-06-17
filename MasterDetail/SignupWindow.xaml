@@ -58,7 +58,7 @@
         <StackPanel Orientation="Vertical" VerticalAlignment="Center" HorizontalAlignment="Right" Grid.Row="1" MinWidth="300" MinHeight="200">
             <Grid Margin="10">
                 <m:Map   MinWidth="300" MinHeight="200"/>
-                <m:Map x:Name="myMap" CredentialsProvider="INSERT_YOUR_BING_MAPS_KEY" 
+                <m:Map x:Name="myMap" CredentialsProvider="Alg3J3PJtAnvHidHdrRRCnYXMntWcIP1PlTY4wHZTfNPH_vjZzUdRrToBmisSSvn" 
                          Center="46.227638,2.213749" ZoomLevel="4" MouseDoubleClick="MapWithPushpins_MouseDoubleClick" />
                 
             </Grid>
