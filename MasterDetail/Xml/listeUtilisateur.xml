@@ -32,4 +32,20 @@
       <AltitudeReference>Ground</AltitudeReference>
     </Position>
   </Utilisateur>
+  <Utilisateur>
+    <UserName>a</UserName>
+    <Password>a</Password>
+    <Type>Vendeur</Type>
+    <Nom>efef</Nom>
+    <Prenom>efe</Prenom>
+    <Age>ef</Age>
+    <Mail />
+    <ImagePath>Images/image.png</ImagePath>
+    <Position>
+      <Latitude>47.167963241178782</Latitude>
+      <Longitude>0.36804587500001151</Longitude>
+      <Altitude>0</Altitude>
+      <AltitudeReference>Ellipsoid</AltitudeReference>
+    </Position>
+  </Utilisateur>
 </ArrayOfUtilisateur>
