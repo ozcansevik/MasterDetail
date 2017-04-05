@@ -189,7 +189,7 @@ namespace MasterDetail.ViewModels
             ListeVoiture.Add(new Voiture("BMW", "M5", "Sport", int.Parse("550"), "Un bolide à tout épreuve.", "Images/m5.jpg", "Sounds/m5.wma"));
             ListeVoiture.Add(new Voiture("Ford", "Mustang", "Sport", int.Parse("500"), "Attention à vos oreilles.Cette voiture va vous étonner par sa rapidité. Voiture américaine equipé d'un moteur v10.","Images/mustang.jpg","Sounds/mustang.wma"));
             ListeVoiture.Add(new Voiture("Mercedes", "C63AMG", "Sport", int.Parse("750"), "Grosse berline sportive allemande.", "Images/c63.jpg","Sounds/c63.wma"));
-            ListeVoiture.Add(new Voiture("Citroen", "Saxo", "Berline", int.Parse("60"), "Voiture parfaite pour jeune pilote.r", "Images/saxo.jpg", "Sounds/saxo.wma"));
+            ListeVoiture.Add(new Voiture("Citroen", "Saxo", "Berline", int.Parse("60"), "Voiture parfaite pour jeune pilote.", "Images/saxo.jpg", "Sounds/saxo.wma"));
             ListeVoiture.Add(new Voiture("Audi", "RS3", "Sport", int.Parse("367"), "Voiture pour les passionés de la conduite", "Images/rs3.jpg","Sounds/rs3.wma"));
 
             TextEdit = "Modifier";
